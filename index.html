@@ -39,7 +39,6 @@ section{padding:72px 0}
 .eyebrow{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--cactus-soft);color:var(--cactus-dark);border-radius:var(--pill);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 .eyebrow.blue{background:var(--blue-soft);color:var(--blue)}
 .sec-head{max-width:640px;margin-bottom:32px;display:flex;flex-direction:column;gap:12px}
-.sec-head.center{margin-left:auto;margin-right:auto;text-align:center;align-items:center}
 
 /* ============ Buttons ============ */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:var(--pill);font-size:15px;font-weight:500;background:var(--fill);color:var(--blue);transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
@@ -47,8 +46,6 @@ section{padding:72px 0}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:var(--blue);color:#fff}
 .btn-primary:hover{background:#0A7AF0;box-shadow:0 6px 18px rgba(0,113,227,.3)}
-.btn-dark{background:var(--dark);color:#fff}
-.btn-dark:hover{background:#2c2c2e}
 .btn-white{background:#fff;color:var(--text);box-shadow:var(--sh-1)}
 .btn-white:hover{background:#f7f7f9}
 .btn-lg{padding:14px 32px;font-size:17px}
@@ -74,8 +71,7 @@ section{padding:72px 0}
 .hero{padding:88px 0 56px;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
 .hero h1 .accent{color:var(--cactus-dark)}
-.slogan{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:10px 18px;background:var(--dark);color:#fff;border-radius:var(--pill);font-size:17px;font-weight:600;letter-spacing:-.01em}
-.slogan span{color:var(--blue-light);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.slogan{display:inline-flex;align-items:center;margin-top:18px;padding:10px 20px;background:var(--dark);color:#fff;border-radius:var(--pill);font-size:17px;font-weight:600;letter-spacing:-.01em}
 .hero-sub{margin-top:22px;font-size:19px;color:var(--text-2);max-width:52ch}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
@@ -118,21 +114,17 @@ section{padding:72px 0}
 .m-sub{font-size:14px;font-weight:600}
 .m-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .m-card{background:#fff;border-radius:14px;padding:12px;box-shadow:var(--sh-3)}
-.m-card .ic{width:30px;height:30px;border-radius:9px;margin-bottom:10px}
+.m-card .ic{width:30px;height:30px;border-radius:9px;margin-bottom:10px;display:block}
 .m-card b{display:block;font-size:12px;font-weight:600}
 .m-card small{font-size:10px;color:var(--text-2)}
-.m-fps{position:absolute;right:22px;top:22px;background:#fff;border-radius:12px;padding:8px 12px;box-shadow:var(--sh-4);display:flex;gap:10px;align-items:center}
-.m-fps .n{font-size:18px;font-weight:700;color:var(--cactus-dark);letter-spacing:-.02em}
-.m-fps .l{font-size:9px;color:var(--text-2);line-height:1.2}
 @media(max-width:560px){.mock{grid-template-columns:1fr}.m-side{display:none}.m-cards{grid-template-columns:1fr 1fr}}
 
 /* ============ Cards / grid ============ */
 .grid{display:grid;gap:20px}
 .g2{grid-template-columns:repeat(2,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:960px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}}
+@media(max-width:960px){.g3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.g2,.g3{grid-template-columns:1fr}}
 .card{background:var(--card);border-radius:var(--r-5);padding:24px;box-shadow:var(--sh-3);transition:transform .2s ease,box-shadow .2s ease}
 .card-hover:hover{transform:translateY(-3px);box-shadow:var(--sh-4)}
 .card .icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:16px}
@@ -145,10 +137,9 @@ section{padding:72px 0}
 .ic-teal{background:linear-gradient(135deg,#30B0C7,#34C759)}
 .card h3{margin-bottom:8px}
 .card.feature-big{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-@media(max-width:960px){.card.feature-big{grid-column:span 2;grid-template-columns:1fr}}
+@media(max-width:960px){.card.feature-big{grid-template-columns:1fr}}
 @media(max-width:600px){.card.feature-big{grid-column:span 1}}
 .badge{display:inline-flex;padding:4px 8px;border-radius:var(--pill);font-size:11px;font-weight:600;letter-spacing:.04em}
-.badge.blue{background:var(--blue-soft);color:var(--blue)}
 .badge.green{background:var(--cactus-soft);color:var(--cactus-dark)}
 .badge.new{background:var(--dark);color:#fff}
 
@@ -160,17 +151,25 @@ section{padding:72px 0}
 @media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
 
 /* ============ Comparison ============ */
-.compare{background:#fff;border-radius:var(--r-6);box-shadow:var(--sh-3);overflow:hidden}
-.compare table{width:100%;border-collapse:collapse;font-size:15px}
-.compare th,.compare td{padding:16px 24px;text-align:left;border-bottom:1px solid var(--bg)}
-.compare th{font-size:13px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em;background:var(--bg-2)}
-.compare th:nth-child(3){color:var(--cactus-dark)}
-.compare td:first-child{font-weight:500}
-.compare td:nth-child(2){color:var(--text-2)}
+.compare{background:#fff;border-radius:var(--r-6);box-shadow:var(--sh-3);overflow:auto;-webkit-overflow-scrolling:touch}
+.compare table{width:100%;border-collapse:collapse;font-size:14px}
+.compare th,.compare td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--bg);vertical-align:top}
+.compare th{font-size:12px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em;background:var(--bg-2);white-space:nowrap;position:sticky;top:0}
+.compare th.hl{color:var(--cactus-dark);background:var(--cactus-soft)}
+.compare td.hl{background:#F6FBF4}
+.compare td:first-child{font-weight:500;white-space:nowrap}
 .compare tr:last-child td{border-bottom:0}
+.compare.wide table{min-width:1040px}
+.compare.wide td:first-child,.compare.wide th:first-child{position:sticky;left:0;background:#fff;z-index:1}
+.compare.wide th:first-child{background:var(--bg-2)}
 .yes{display:inline-flex;align-items:center;gap:6px;color:var(--cactus-dark);font-weight:500}
-.yes::before{content:"";width:18px;height:18px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5'/%3E%3C/svg%3E") center/12px no-repeat}
-.no{color:var(--text-3)}
+.yes::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5'/%3E%3C/svg%3E") center/12px no-repeat}
+.part{display:inline-flex;align-items:center;gap:6px;color:#B25E00;font-weight:500}
+.part::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:#FF9F0A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M4.5 8h7'/%3E%3C/svg%3E") center/12px no-repeat}
+.no{display:inline-flex;align-items:center;gap:6px;color:var(--text-3)}
+.no::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--fill-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M5 5l6 6M11 5l-6 6'/%3E%3C/svg%3E") center/11px no-repeat}
+.nd{color:var(--text-3)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:13px;color:var(--text-2)}
 @media(max-width:600px){.compare th,.compare td{padding:12px 14px;font-size:13px}}
 
 /* ============ Steps ============ */
@@ -187,13 +186,15 @@ section{padding:72px 0}
 .player-demo .t-body{color:#EBEBF0}
 .player-demo ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:10px;color:#EBEBF0;font-size:15px}
 .player-demo li{display:flex;gap:10px;align-items:center}
-.player-demo li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue-light)}
+.player-demo li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue-light);flex:none}
 .popup{background:#fff;color:var(--text);border-radius:var(--r-4);padding:16px;box-shadow:var(--sh-4);display:flex;flex-direction:column;gap:14px}
 .popup .ph{display:flex;justify-content:space-between;font-size:13px}
 .popup .ph b{font-weight:600}.popup .ph span{color:var(--text-2);font-size:12px}
 .popup .now{display:flex;gap:12px;align-items:center}
-.popup .cover{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,var(--blue-light),var(--blue))}
+.popup .cover{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,var(--blue-light),var(--blue));flex:none}
 .popup .now b{font-size:14px;font-weight:500;display:block}.popup .now small{font-size:12px;color:var(--text-2)}
+.src{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:var(--pill);background:var(--cactus-soft);color:var(--cactus-dark);font-size:11px;font-weight:600}
+.src::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
 .track{height:4px;background:var(--fill);border-radius:2px;overflow:hidden}
 .track i{display:block;height:100%;width:36%;background:var(--blue);border-radius:2px;animation:prog 14s linear infinite}
 @keyframes prog{from{width:36%}to{width:100%}}
@@ -213,7 +214,7 @@ section{padding:72px 0}
 .expander summary:hover{background:var(--bg-2)}
 .exp-title{font-size:17px;font-weight:600;display:block}
 .exp-sub{font-size:13px;color:var(--text-2);display:block;margin-top:2px}
-.caret{margin-left:auto;width:28px;height:28px;border-radius:50%;background:var(--fill);display:grid;place-items:center;color:var(--text-2);transition:transform .2s}
+.caret{margin-left:auto;width:28px;height:28px;border-radius:50%;background:var(--fill);display:grid;place-items:center;color:var(--text-2);transition:transform .2s;flex:none}
 .expander[open] .caret{transform:rotate(180deg)}
 .exp-body{padding:0 22px 22px}
 .list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:6px}
@@ -234,7 +235,7 @@ section{padding:72px 0}
 .dl .big-logo{width:64px;height:64px;border-radius:18px;background:var(--cactus);display:grid;place-items:center;font-size:30px;color:#fff;font-weight:700}
 .dl-actions{display:flex;flex-wrap:wrap;gap:10px;margin-left:auto}
 .link-tile{display:flex;align-items:center;gap:14px;padding:18px 20px;color:var(--text)}
-.link-tile .li{width:40px;height:40px;border-radius:12px;background:var(--bg);display:grid;place-items:center;color:var(--text)}
+.link-tile .li{width:40px;height:40px;border-radius:12px;background:var(--bg);display:grid;place-items:center;color:var(--text);flex:none}
 .link-tile .li svg{width:18px;height:18px}
 .link-tile .arr{margin-left:auto;color:var(--text-3)}
 
@@ -295,18 +296,18 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
       <h1 class="t-display" style="margin-top:18px">
         Minecraft запускается<br><span class="accent">быстрее</span>, чем раньше
       </h1>
-      <div class="slogan"><span>Слоган</span> Лучше, чем было.</div>
+      <div class="slogan">Лучше, чем было.</div>
       <p class="hero-sub">
         Полностью переписан на Java. Буст FPS, ультранизкое потребление ОЗУ,
-        перевод описаний модов и музыка прямо в лаунчере. Ваниль, Forge, Fabric
-        и NeoForge — в один клик.
+        перевод описаний модов и Dynamic Player, который показывает музыку,
+        которую вы сейчас слушаете. Ваниль, Forge, Fabric и NeoForge — в один клик.
       </p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="#download">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.6v8.2M4.6 6.6L8 10l3.4-3.4M2 12.2v1.2a1 1 0 001 1h10a1 1 0 001-1v-1.2"/></svg>
           Скачать бесплатно
         </a>
-        <a class="btn btn-lg" href="https://github.com/virrexcactunus-cloud" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn btn-lg" href="https://github.com/cactusmclauncher/cactus-launcher-2" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
       <div class="hero-meta">
         <span class="meta-chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg>VirusTotal — чисто</span>
@@ -317,7 +318,7 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
     </div>
 
     <!-- ---- Мок окна лаунчера в стиле Cactus UI ---- -->
-    <div class="mock" role="img" aria-label="Окно Cactus Launcher 2: слева профиль Nick, меню Главная, Сборки, Моды, Миры, Новости и плеер «Сейчас играет Sweden · C418»; справа заголовок Главная, баннер «Новое обновление» с кнопкой Играть и карточки недавних сборок.">
+    <div class="mock" role="img" aria-label="Окно Cactus Launcher 2: слева профиль Nick, меню Главная, Сборки, Моды, Миры, Новости и Dynamic Player «Сейчас слушаете Sweden · C418»; справа заголовок Главная, баннер «Новое обновление» с кнопкой Играть и карточки недавних сборок.">
       <aside class="m-side">
         <div class="m-profile">
           <span class="m-avatar"></span>
@@ -333,7 +334,7 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
         <div class="m-spacer"></div>
         <div class="m-np">
           <span class="art"></span>
-          <span><div class="ti">Сейчас играет</div><div class="tt">Sweden · C418</div></span>
+          <span><div class="ti">Сейчас слушаете</div><div class="tt">Sweden · C418</div></span>
           <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
         </div>
         <div class="m-item" style="color:var(--text-2)">Настройки</div>
@@ -417,7 +418,7 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
         </span>
         <span class="badge new">Новое</span>
         <h3 class="t-subtitle" style="margin-top:10px">Dynamic Player</h3>
-        <p class="t-body">Управляйте музыкой прямо в лаунчере: саундтрек C418, плейлисты, громкость, автовоспроизведение. Плеер живёт в сайдбаре и не мешает.</p>
+        <p class="t-body">Показывает музыку, которую вы сейчас слушаете: трек, исполнитель и обложка из Spotify, Яндекс Музыки, браузера или любого другого плеера появляются в сайдбаре. Пауза, следующий трек, громкость — без Alt+Tab.</p>
       </div>
 
       <div class="card card-hover reveal feature-big">
@@ -481,22 +482,22 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
     <div class="player-demo reveal">
       <div>
         <span class="eyebrow" style="background:rgba(255,255,255,.12);color:var(--blue-light)">Dynamic Player</span>
-        <h2 class="t-title-l" style="margin-top:14px">Музыка, которая не мешает играть</h2>
-        <p class="t-body" style="margin-top:12px;max-width:50ch">Плеер встроен в сайдбар. Нажали «Играть» — он тихо уходит в фон и, как и остальные сервисы, не ест память.</p>
+        <h2 class="t-title-l" style="margin-top:14px">Видит, что вы слушаете прямо сейчас</h2>
+        <p class="t-body" style="margin-top:12px;max-width:50ch">Включили музыку в Spotify, Яндекс Музыке, VK или в браузере? Dynamic Player подхватит трек и покажет его в сайдбаре лаунчера — с обложкой, прогрессом и кнопками управления.</p>
         <ul>
-          <li>Саундтрек C418 и свои треки из папки</li>
-          <li>Громкость, автовоспроизведение, обложки</li>
-          <li>Выгружается вместе с лаунчером при старте игры</li>
+          <li>Любой источник: системные медиа-сессии Windows</li>
+          <li>Пауза, следующий трек и громкость из лаунчера</li>
+          <li>Уходит в фон при запуске игры и не ест память</li>
         </ul>
       </div>
-      <div class="popup" aria-label="Пример окна плеера">
-        <div class="ph"><b>Плеер</b><span>Громкость 70%</span></div>
-        <div class="now"><span class="cover"></span><span><b>Sweden</b><small>C418</small></span></div>
+      <div class="popup" aria-label="Пример окна Dynamic Player">
+        <div class="ph"><b>Сейчас слушаете</b><span>Громкость 70%</span></div>
+        <div class="now"><span class="cover"></span><span><b>Sweden</b><small>C418</small><br><span class="src">Spotify</span></span></div>
         <div><div class="track"><i></i></div><div class="times"><span>1:12</span><span>3:30</span></div></div>
         <div class="ctrls"><span>⏮</span><span class="pp">▶</span><span>⏭</span></div>
         <div class="toggle-row"><span>Показывать плеер</span><span class="toggle on" aria-hidden="true"></span></div>
-        <div class="toggle-row"><span>Автовоспроизведение</span><span class="toggle" aria-hidden="true"></span></div>
         <div class="toggle-row"><span>Показывать обложку</span><span class="toggle on" aria-hidden="true"></span></div>
+        <div class="toggle-row"><span>Скрывать во время игры</span><span class="toggle" aria-hidden="true"></span></div>
       </div>
     </div>
   </div>
@@ -507,22 +508,67 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Сравнение</span>
-      <h2 class="t-title-l">Лучше, чем было. Буквально.</h2>
+      <h2 class="t-title-l">Cactus 2 против других лаунчеров</h2>
+      <p class="t-body">KLauncher, SK Launcher, TLauncher, Legacy Launcher, Prism и Millida — честно, по пунктам.</p>
+    </div>
+
+    <div class="compare wide reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Возможность</th>
+            <th class="hl">Cactus 2</th>
+            <th>KLauncher</th>
+            <th>SK Launcher</th>
+            <th>TLauncher</th>
+            <th>Legacy Launcher</th>
+            <th>Prism</th>
+            <th>Millida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Движок</td><td class="hl"><span class="yes">Java</span></td><td>Java</td><td>Java</td><td>Java</td><td>Java</td><td>C++ / Qt</td><td class="nd">—</td></tr>
+          <tr><td>Открытый код</td><td class="hl"><span class="yes">Да, GitHub</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="part">Частично</span></td><td><span class="yes">Да, GPL-3</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Офлайн-профили</td><td class="hl"><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="part">Только с лицензией</span></td><td><span class="yes">Да</span></td></tr>
+          <tr><td>Forge / Fabric / NeoForge</td><td class="hl"><span class="yes">Все три</span></td><td><span class="part">Forge, Fabric</span></td><td><span class="part">Forge, Fabric</span></td><td><span class="part">Forge, Fabric</span></td><td><span class="yes">Все три</span></td><td><span class="yes">Все три + Quilt</span></td><td><span class="part">Forge, Fabric</span></td></tr>
+          <tr><td>Авто-установка Java под версию</td><td class="hl"><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="part">Встроенная</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td class="nd">—</td></tr>
+          <tr><td>Буст FPS без обязательных модов</td><td class="hl"><span class="yes">Оптимизация запуска</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Выгрузка сервисов при старте игры</td><td class="hl"><span class="yes">Да</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Перевод описаний модов</td><td class="hl"><span class="yes">Да, на русский</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Каталог модов</td><td class="hl"><span class="yes">Да</span></td><td><span class="part">Ограниченный</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Modrinth, CurseForge</span></td><td><span class="yes">Да</span></td></tr>
+          <tr><td>Отдельные сборки (инстансы)</td><td class="hl"><span class="yes">Да</span></td><td><span class="part">Профили</span></td><td><span class="part">Профили</span></td><td><span class="part">Профили</span></td><td><span class="part">Профили</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td></tr>
+          <tr><td>Dynamic Player — показывает, что вы слушаете</td><td class="hl"><span class="yes">Да</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Реклама и промо внутри</td><td class="hl"><span class="yes">Нет</span></td><td class="nd">—</td><td><span class="yes">Нет</span></td><td><span class="part">Есть</span></td><td><span class="yes">Нет</span></td><td><span class="yes">Нет</span></td><td class="nd">—</td></tr>
+          <tr><td>Платформы</td><td class="hl">Windows</td><td>Windows</td><td>Win / Mac / Linux</td><td>Win / Mac / Linux</td><td>Win / Mac / Linux</td><td>Win / Mac / Linux</td><td>Windows</td></tr>
+          <tr><td>Цена</td><td class="hl"><span class="yes">0 ₽</span></td><td>0 ₽</td><td>0 ₽</td><td>0 ₽</td><td>0 ₽</td><td>0 ₽</td><td>0 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend reveal">
+      <span><span class="yes">Есть</span></span>
+      <span><span class="part">Частично / с оговорками</span></span>
+      <span><span class="no">Нет</span></span>
+      <span class="nd">— нет данных</span>
+    </div>
+    <p class="t-caption reveal" style="margin-top:10px;max-width:72ch">Данные о сторонних лаунчерах взяты из их публичных описаний и могут меняться с обновлениями — проверяйте на официальных сайтах. Нашли неточность? Напишите в канал, поправим.</p>
+
+    <div class="sec-head reveal" style="margin-top:48px">
+      <h2 class="t-title">Лучше, чем было. Буквально.</h2>
       <p class="t-body">Что изменилось со времён Cactus Lite Minecraft 1.2.</p>
     </div>
     <div class="compare reveal">
       <table>
-        <thead><tr><th>Возможность</th><th>Cactus Lite 1.2</th><th>Cactus Launcher 2</th></tr></thead>
+        <thead><tr><th>Возможность</th><th>Cactus Lite 1.2</th><th class="hl">Cactus Launcher 2</th></tr></thead>
         <tbody>
-          <tr><td>Язык</td><td>Python + PyInstaller</td><td><span class="yes">Java</span></td></tr>
-          <tr><td>Буст FPS</td><td><span class="no">Нет</span></td><td><span class="yes">Оптимизация запуска</span></td></tr>
-          <tr><td>Потребление ОЗУ</td><td>Обычное</td><td><span class="yes">Ультранизкое, сервисы выгружаются</span></td></tr>
-          <tr><td>Перевод описаний модов</td><td><span class="no">Нет</span></td><td><span class="yes">Да, прямо в карточке</span></td></tr>
-          <tr><td>Музыка в лаунчере</td><td><span class="no">Нет</span></td><td><span class="yes">Dynamic Player</span></td></tr>
-          <tr><td>Подсистемы модов</td><td>Ваниль, Forge, Fabric, NeoForge</td><td><span class="yes">Те же + сегменты в сборке</span></td></tr>
-          <tr><td>Сборки с отдельными папками</td><td><span class="no">Нет</span></td><td><span class="yes">Да</span></td></tr>
-          <tr><td>Ложные срабатывания антивируса</td><td>Бывают (PyInstaller)</td><td><span class="yes">Практически нет</span></td></tr>
-          <tr><td>Цена</td><td>0 ₽</td><td><span class="yes">0 ₽</span></td></tr>
+          <tr><td>Язык</td><td>Python + PyInstaller</td><td class="hl"><span class="yes">Java</span></td></tr>
+          <tr><td>Буст FPS</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Оптимизация запуска</span></td></tr>
+          <tr><td>Потребление ОЗУ</td><td>Обычное</td><td class="hl"><span class="yes">Ультранизкое, сервисы выгружаются</span></td></tr>
+          <tr><td>Перевод описаний модов</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Да, прямо в карточке</span></td></tr>
+          <tr><td>Dynamic Player</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Показывает, что вы слушаете</span></td></tr>
+          <tr><td>Автоустановка Java</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Под нужную версию Minecraft</span></td></tr>
+          <tr><td>Сборки с отдельными папками</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Да</span></td></tr>
+          <tr><td>Ложные срабатывания антивируса</td><td>Бывают (PyInstaller)</td><td class="hl"><span class="yes">Практически нет</span></td></tr>
+          <tr><td>Цена</td><td>0 ₽</td><td class="hl"><span class="yes">0 ₽</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -534,8 +580,8 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
   <div class="wrap">
     <div class="sec-head reveal"><h2 class="t-title-l">Начать за четыре шага</h2></div>
     <div class="steps">
-      <div class="step reveal"><span class="num">1</span><div class="t-subtitle">Скачай</div><p class="t-body" style="margin-top:4px">Забери JAR с GitHub или из поста в канале.</p></div>
-      <div class="step reveal"><span class="num">2</span><div class="t-subtitle">Запусти</div><p class="t-body" style="margin-top:4px">Установка не нужна — Java лаунчер подтянет сам.</p></div>
+      <div class="step reveal"><span class="num">1</span><div class="t-subtitle">Скачай</div><p class="t-body" style="margin-top:4px">Забери сборку с GitHub или из поста в канале.</p></div>
+      <div class="step reveal"><span class="num">2</span><div class="t-subtitle">Запусти</div><p class="t-body" style="margin-top:4px">Установка не нужна — Java лаунчер поставит сам.</p></div>
       <div class="step reveal"><span class="num">3</span><div class="t-subtitle">Собери</div><p class="t-body" style="margin-top:4px">Создай сборку: версия, загрузчик, память, моды.</p></div>
       <div class="step reveal"><span class="num">4</span><div class="t-subtitle">Играй</div><p class="t-body" style="margin-top:4px">Нажми «Играть» — буст FPS включится сам.</p></div>
     </div>
@@ -562,7 +608,8 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
             <li><span class="em">⚡</span><span><b>Буст FPS:</b> оптимизируем процесс запуска, а не навязываем список модов.</span></li>
             <li><span class="em">💾</span><span><b>Ультранизкое потребление ОЗУ:</b> при запуске игры лаунчер выгружает свои сервисы.</span></li>
             <li><span class="em">🌐</span><span><b>Перевод описаний модов:</b> всегда понятно, что делает мод.</span></li>
-            <li><span class="em">🎵</span><span><b>Dynamic Player:</b> музыка и управление прямо в лаунчере.</span></li>
+            <li><span class="em">🎵</span><span><b>Dynamic Player:</b> показывает музыку, которую вы сейчас слушаете, и управляет ею из лаунчера.</span></li>
+            <li><span class="em">☕</span><span><b>Автоустановка Java:</b> лаунчер сам ставит нужную версию под выбранный Minecraft.</span></li>
             <li><span class="em">🎨</span><span><b>Новый дизайн Cactus UI:</b> сайдбар, сборки, вкладки, сегменты, переключатели.</span></li>
             <li><span class="em">📦</span><span><b>Сборки:</b> у каждой свои моды, миры, ресурспаки и настройки JVM.</span></li>
           </ul>
@@ -622,7 +669,7 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
     </div>
     <div class="row-card reveal" style="margin-top:16px">
       <span class="ri info" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="7.4"/><path d="M10 9v4.6M10 6.5v.1"/></svg></span>
-      <div><div class="t-subtitle">Про моды</div><p class="t-body" style="margin-top:4px">Моды из каталога не входят в лаунчер — они скачиваются с официальных источников и только после вашего нажатия. Переводятся лишь описания.</p></div>
+      <div><div class="t-subtitle">Про моды и музыку</div><p class="t-body" style="margin-top:4px">Моды из каталога не входят в лаунчер — они скачиваются с официальных источников и только после вашего нажатия. Dynamic Player ничего не записывает: он читает только название трека и обложку из системного медиа-сеанса.</p></div>
     </div>
   </div>
 </section>
@@ -633,7 +680,7 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
     <div class="sec-head reveal">
       <span class="eyebrow blue">📥 Загрузка</span>
       <h2 class="t-title-l">Скачать Cactus Launcher 2</h2>
-      <p class="t-body">Бесплатно, без регистрации. Windows 10 / 11, нужна Java 17+ (лаунчер подскажет, если её нет).</p>
+      <p class="t-body">Бесплатно, без регистрации. Windows 10 / 11. Java ставить не нужно — лаунчер сделает это сам.</p>
     </div>
     <div class="dl reveal">
       <span class="big-logo" aria-hidden="true">C</span>
@@ -642,19 +689,18 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
         <p class="t-caption" style="margin-top:4px">Java · буст FPS · низкое ОЗУ · перевод модов · Dynamic Player</p>
       </div>
       <div class="dl-actions">
-        <!-- Замените href и data-link на актуальную ссылку релиза -->
-        <a class="btn btn-primary btn-lg" id="dlBtn" href="https://github.com/virrexcactunus-cloud" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-primary btn-lg" id="dlBtn" href="https://github.com/cactusmclauncher/cactus-launcher-2/releases/latest" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.6v8.2M4.6 6.6L8 10l3.4-3.4M2 12.2v1.2a1 1 0 001 1h10a1 1 0 001-1v-1.2"/></svg>
           Скачать v2.0
         </a>
-        <button class="btn btn-lg" type="button" id="copyBtn" data-link="https://github.com/virrexcactunus-cloud">Скопировать ссылку</button>
+        <button class="btn btn-lg" type="button" id="copyBtn" data-link="https://github.com/cactusmclauncher/cactus-launcher-2/releases/latest">Скопировать ссылку</button>
       </div>
     </div>
 
     <div class="grid g3" style="margin-top:16px">
-      <a class="card card-hover link-tile reveal" href="https://github.com/virrexcactunus-cloud" target="_blank" rel="noopener noreferrer">
+      <a class="card card-hover link-tile reveal" href="https://github.com/cactusmclauncher/cactus-launcher-2" target="_blank" rel="noopener noreferrer">
         <span class="li"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.18-.89-1.18-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 014 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.52.56.83 1.28.83 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.14.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span>
-        <span><div class="t-subtitle">Исходный код</div><p class="t-caption">GitHub · cactus-launcher-2</p></span>
+        <span><div class="t-subtitle">Исходный код</div><p class="t-caption">GitHub · cactusmclauncher/cactus-launcher-2</p></span>
         <span class="arr">›</span>
       </a>
       <a class="card card-hover link-tile reveal" href="https://t.me/virrek_cactus" target="_blank" rel="noopener noreferrer">
@@ -679,12 +725,13 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
       <h2 class="t-title-l">Частые вопросы</h2>
     </div>
     <div class="reveal">
-      <details class="expander"><summary><span class="exp-title">Чем Cactus 2 лучше Cactus Lite?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Он написан на Java, поэтому быстрее стартует и меньше весит в памяти. Добавлены буст FPS через оптимизацию запуска, выгрузка сервисов при старте игры, перевод описаний модов и встроенный плеер. Всё из Lite при этом осталось.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Чем Cactus 2 лучше Cactus Lite?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Он написан на Java, поэтому быстрее стартует и меньше весит в памяти. Добавлены буст FPS через оптимизацию запуска, выгрузка сервисов при старте игры, перевод описаний модов и Dynamic Player. Всё из Lite при этом осталось.</p></div></details>
       <details class="expander"><summary><span class="exp-title">Как работает буст FPS, если вы не ставите моды?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Лаунчер подбирает аргументы JVM и сборщик мусора под ваше железо, грамотно выделяет память и выгружает собственные сервисы. Моды вроде Sodium можно поставить дополнительно из каталога — но это ваш выбор, а не обязательный пакет.</p></div></details>
-      <details class="expander"><summary><span class="exp-title">Нужно ли ставить Java отдельно?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Если Java 17+ уже есть — ничего делать не надо. Если нет, лаунчер покажет ссылку и подскажет, какую версию взять.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Что такое Dynamic Player?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Это блок в сайдбаре, который показывает музыку, которую вы сейчас слушаете — из Spotify, Яндекс Музыки, браузера или любого плеера, поддерживающего системные медиа-сессии Windows. Там же можно поставить паузу, переключить трек и подкрутить громкость, не выходя из лаунчера.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Нужно ли ставить Java отдельно?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Если Java 17+ уже есть — ничего делать не надо. Если нет, лаунчер сам поставит Java под нужную Вам версию Minecraft.</p></div></details>
       <details class="expander"><summary><span class="exp-title">Лаунчер правда бесплатный?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Да. Полностью. Денег автор не просит — достаточно подписки на канал и реакции 🌵❤️</p></div></details>
       <details class="expander"><summary><span class="exp-title">Перенесутся ли мои сборки из Cactus Lite?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Папка .minecraft остаётся общей, так что миры, скины и моды видны сразу. Их можно импортировать в отдельную сборку одной кнопкой.</p></div></details>
-      <details class="expander"><summary><span class="exp-title">Нашёл баг, куда писать?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">В личку <a class="link" href="https://t.me/CactunusTech" target="_blank" rel="noopener noreferrer">@CactunusTech</a> или в комментарии в канале. Автор читает всё и правит — любой отчёт полезен.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Нашёл баг, куда писать?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">В личку <a class="link" href="https://t.me/CactunusTech" target="_blank" rel="noopener noreferrer">@CactunusTech</a>, в комментарии в канале или в <a class="link" href="https://github.com/cactusmclauncher/cactus-launcher-2/issues" target="_blank" rel="noopener noreferrer">Issues на GitHub</a>. Автор читает всё и правит — любой отчёт полезен.</p></div></details>
     </div>
   </div>
 </section>
@@ -695,10 +742,10 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
     <div class="support reveal">
       <div class="big" aria-hidden="true">🌵</div>
       <h2 class="t-title-l" style="margin-top:10px">Поддержать проект</h2>
-      <p class="t-body" style="margin:10px auto 0;max-width:56ch">Версии выходят по полдня работы. Подписка на канал, звезда на GitHub или просто реакция — уже хорошая помощь.</p>
+      <p class="t-body" style="margin:10px auto 0;max-width:56ch">Подписка на канал, звезда на GitHub или просто реакция — уже хорошая помощь.</p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px">
         <a class="btn btn-primary" href="https://t.me/virrek_cactus" target="_blank" rel="noopener noreferrer">Подписаться на канал</a>
-        <a class="btn btn-white" href="https://github.com/virrexcactunus-cloud" target="_blank" rel="noopener noreferrer">Звезда на GitHub</a>
+        <a class="btn btn-white" href="https://github.com/cactusmclauncher/cactus-launcher-2" target="_blank" rel="noopener noreferrer">Звезда на GitHub</a>
         <a class="btn btn-white" href="https://t.me/CactunusTech" target="_blank" rel="noopener noreferrer">Написать в поддержку</a>
       </div>
     </div>
@@ -721,14 +768,14 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
       </div>
       <div class="f-col">
         <h4>Ссылки</h4>
-        <a href="https://github.com/virrexcactunus-cloud" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/cactusmclauncher/cactus-launcher-2" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://t.me/virrek_cactus" target="_blank" rel="noopener noreferrer">Телеграм-канал</a>
         <a href="https://t.me/CactunusTech" target="_blank" rel="noopener noreferrer">Поддержка @CactunusTech</a>
         <a href="https://www.youtube.com/@CactunusTech" target="_blank" rel="noopener noreferrer">YouTube</a>
       </div>
     </div>
     <div class="f-bottom">
-      <span class="t-caption">Не связано с Mojang Studios и Microsoft. Minecraft — торговая марка Mojang Studios.</span>
+      <span class="t-caption">Не связано с Mojang Studios и Microsoft. Minecraft — торговая марка Mojang Studios. KLauncher, SK Launcher, TLauncher, Legacy Launcher, Prism и Millida — товарные знаки их владельцев.</span>
       <span class="t-caption">Сделано с 🌵 · Cactus UI</span>
     </div>
   </div>
@@ -746,7 +793,7 @@ footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
   /* ---------- привет из консоли ---------- */
   try{
     console.log("%c🌵 Cactus Launcher 2 — Лучше, чем было.","font-size:20px;font-weight:700;color:#7FB347");
-    console.log("%cРаз ты уже здесь — сделай PR на GitHub: https://github.com/virrexcactunus-cloud","font-size:13px;color:#0071E3");
+    console.log("%cРаз ты уже здесь — сделай PR на GitHub: https://github.com/cactusmclauncher/cactus-launcher-2","font-size:13px;color:#0071E3");
   }catch(e){}
 
   /* ---------- toast ---------- */
