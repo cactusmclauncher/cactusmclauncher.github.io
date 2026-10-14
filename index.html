@@ -1,331 +1,839 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b57d0">
-<title>ШКП — Школа №11</title>
-<meta name="description" content="Школьная коммунистическая партия. Меньше слов — больше дела. Голосуй за ШКП!">
-<meta property="og:title" content="ШКП — за лучшую школу №11 🗳️">
-<meta property="og:description" content="Меньше слов — больше дела. Голосуй за ШКП! 💙">
-<meta property="og:image" content="https://i9.photo.2gis.com/photo-gallery/415df76d-7dab-4588-9aac-d394046a764b.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cactus Launcher 2 — Лучше, чем было.</title>
+<meta name="description" content="Cactus Launcher 2 — быстрый бесплатный лаунчер Minecraft на Java: буст FPS, ультранизкое потребление ОЗУ, перевод описаний модов и Dynamic Player.">
 <style>
+/* ============ Cactus UI tokens ============ */
 :root{
-  --primary:#0b57d0;--on-primary:#fff;
-  --primary-container:#d3e3fd;--on-primary-container:#041e49;
-  --secondary-container:#c2e7ff;--on-secondary-container:#001d35;
-  --tertiary:#7b4dff;--tertiary-container:#eaddff;--on-tertiary-container:#21005d;
-  --surface:#fbfcff;--surface-1:#f0f4fb;--surface-2:#e8eef8;--surface-3:#dfe7f3;
-  --on-surface:#1b1b1f;--on-surface-var:#44474f;--outline:#c4c7cf;
-  --inverse-surface:#303034;--inverse-on:#f2f0f4;
+  --bg:#F5F5F7; --bg-2:#FBFBFD; --card:#FFFFFF; --fill:#E8E8ED; --fill-2:#D2D2D7;
+  --text:#1D1D1F; --text-2:#6E6E73; --text-3:#8E8E93;
+  --blue:#0071E3; --blue-soft:#E5F1FC; --blue-light:#99CCFF;
+  --green:#34C759; --cactus:#7FB347; --cactus-soft:#E8F3E6; --cactus-dark:#2E7D32;
+  --red:#FF3B30; --red-soft:#FFE9E7; --dark:#1D1D1F;
+  --sh-1:0 1px 3px rgba(0,0,0,.078); --sh-2:0 2px 8px rgba(0,0,0,.059);
+  --sh-3:0 4px 16px rgba(0,0,0,.078); --sh-4:0 12px 32px rgba(0,0,0,.149); --sh-5:0 24px 64px rgba(0,0,0,.2);
+  --r-3:12px; --r-4:16px; --r-5:20px; --r-6:24px; --r-7:28px; --pill:999px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Segoe UI Variable","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
-@media (prefers-color-scheme:dark){:root{
-  --primary:#a8c7fa;--on-primary:#062e6f;
-  --primary-container:#0842a0;--on-primary-container:#d3e3fd;
-  --secondary-container:#004a77;--on-secondary-container:#c2e7ff;
-  --tertiary:#cfbcff;--tertiary-container:#4f378b;--on-tertiary-container:#eaddff;
-  --surface:#121318;--surface-1:#1a1c22;--surface-2:#20232a;--surface-3:#272a32;
-  --on-surface:#e3e2e6;--on-surface-var:#c4c6d0;--outline:#444750;
-  --inverse-surface:#e3e2e6;--inverse-on:#303034;
-}}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Roboto,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--surface);
-  color:var(--on-surface);max-width:600px;margin:0 auto;padding-bottom:120px;line-height:1.4;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.47;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--blue);text-decoration:none}
+img,svg{display:block}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+section{padding:72px 0}
+.skip{position:absolute;left:-9999px;top:8px;z-index:300;background:#fff;padding:10px 16px;border-radius:var(--pill);box-shadow:var(--sh-3)}
+.skip:focus{left:8px}
 
-/* ===== App bar ===== */
-.appbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:600px;z-index:20;
-  display:flex;align-items:center;gap:12px;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));
-  color:#fff;transition:background .2s,color .2s,box-shadow .2s}
-.appbar.solid{background:var(--surface-2);color:var(--on-surface);box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.logo{width:40px;height:40px;border-radius:12px;background:var(--primary);color:var(--on-primary);
-  display:grid;place-items:center;font-weight:900;font-size:13px}
-.appbar h1{flex:1;font-size:20px;font-weight:500}
-.icon-btn{position:relative;overflow:hidden;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.16);
-  color:inherit;font-size:20px;display:grid;place-items:center;cursor:pointer}
-.appbar.solid .icon-btn{background:transparent}
+/* ============ Typography ============ */
+.t-display{font-size:clamp(40px,6vw,68px);line-height:1.04;font-weight:700;letter-spacing:-.025em}
+.t-title-l{font-size:clamp(28px,3.4vw,40px);line-height:1.1;font-weight:700;letter-spacing:-.02em}
+.t-title{font-size:24px;line-height:1.2;font-weight:700;letter-spacing:-.01em}
+.t-subtitle{font-size:17px;line-height:1.25;font-weight:600}
+.t-body{font-size:15px;color:var(--text-2)}
+.t-caption{font-size:13px;color:var(--text-2)}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--cactus-soft);color:var(--cactus-dark);border-radius:var(--pill);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.eyebrow.blue{background:var(--blue-soft);color:var(--blue)}
+.sec-head{max-width:640px;margin-bottom:32px;display:flex;flex-direction:column;gap:12px}
 
-/* ===== Hero ===== */
-.hero{position:relative;height:88svh;min-height:520px;overflow:hidden;border-radius:0 0 28px 28px;
-  background:#0b57d0}
-.hero .bg{position:absolute;inset:-5% 0 0 0;will-change:transform}
-.hero img{width:100%;height:100%;object-fit:cover;animation:kenburns 18s ease-in-out infinite alternate}
-@keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.15) translateX(-3%)}}
-.hero::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,0) 30%,rgba(4,20,60,.3) 60%,rgba(4,15,45,.88) 100%)}
-.hero-content{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px 20px 28px;color:#fff}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.chip{height:32px;padding:0 14px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;
-  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25)}
-.chip.live::before{content:"";width:8px;height:8px;border-radius:50%;background:#ff5252;animation:pulse 1.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,82,82,.7)}100%{box-shadow:0 0 0 10px rgba(255,82,82,0)}}
-.hero h2{font-size:clamp(34px,9vw,48px);line-height:1.08;font-weight:800;letter-spacing:-.3px}
-.hero h2 .w{display:inline-block}
-.grad{background:linear-gradient(90deg,#8ab4ff,#c0b8ff,#8ae0ff);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{margin-top:10px;font-size:16px;opacity:.95}
-.btns{display:flex;gap:10px;margin-top:18px}
-.btn{position:relative;overflow:hidden;height:50px;padding:0 20px;border-radius:25px;border:none;font:600 15px inherit;font-family:inherit;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex:1;transition:transform .12s}
-.btn:active{transform:scale(.96)}
-.btn.filled{background:var(--primary-container);color:var(--on-primary-container)}
-.btn.glass{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.25)}
+/* ============ Buttons ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:var(--pill);font-size:15px;font-weight:500;background:var(--fill);color:var(--blue);transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
+.btn:hover{background:#dedee3}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:#0A7AF0;box-shadow:0 6px 18px rgba(0,113,227,.3)}
+.btn-white{background:#fff;color:var(--text);box-shadow:var(--sh-1)}
+.btn-white:hover{background:#f7f7f9}
+.btn-lg{padding:14px 32px;font-size:17px}
+.btn-sm{padding:8px 16px;font-size:14px}
+.btn svg{width:18px;height:18px}
+.link{font-weight:500;color:var(--blue)}
+.link:hover{text-decoration:underline}
 
-/* ===== Ticker ===== */
-.ticker{margin:20px 0 8px;overflow:hidden;
-  -webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.track{display:flex;gap:10px;width:max-content;animation:marquee 30s linear infinite}
-.track span{white-space:nowrap;padding:10px 16px;border-radius:20px;background:var(--secondary-container);
-  color:var(--on-secondary-container);font-weight:500;font-size:14px}
-@keyframes marquee{to{transform:translateX(-50%)}}
+/* ============ Header ============ */
+.topbar{position:sticky;top:0;z-index:100;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:rgba(251,251,253,.78);border-bottom:1px solid rgba(0,0,0,.06)}
+.topbar .wrap{height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:700;font-size:17px;letter-spacing:-.01em}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--cactus);display:grid;place-items:center;color:#fff;font-weight:700;font-size:16px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
+.brand .v2{padding:2px 7px;border-radius:6px;background:var(--fill);color:var(--text-2);font-size:11px;font-weight:600}
+.nav{display:flex;gap:4px;padding:4px;background:var(--fill);border-radius:var(--pill)}
+.nav a{padding:7px 14px;border-radius:var(--pill);font-size:14px;color:var(--text-2);font-weight:500;transition:.15s}
+.nav a:hover{color:var(--text)}
+.nav a.is-active{background:#fff;color:var(--text);box-shadow:var(--sh-1)}
+.top-actions{display:flex;gap:8px;align-items:center}
+@media(max-width:900px){.nav{display:none}}
 
-section{padding:12px 16px}
-.title{font-size:26px;font-weight:700;margin:12px 4px 4px}
-.sub{font-size:14px;color:var(--on-surface-var);margin:0 4px 16px}
+/* ============ Hero ============ */
+.hero{padding:88px 0 56px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1 .accent{color:var(--cactus-dark)}
+.slogan{display:inline-flex;align-items:center;margin-top:18px;padding:10px 20px;background:var(--dark);color:#fff;border-radius:var(--pill);font-size:17px;font-weight:600;letter-spacing:-.01em}
+.hero-sub{margin-top:22px;font-size:19px;color:var(--text-2);max-width:52ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.meta-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;background:#fff;border-radius:var(--pill);font-size:13px;font-weight:500;box-shadow:var(--sh-1);color:var(--text)}
+.meta-chip svg{width:14px;height:14px;color:var(--green)}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr}.hero{padding-top:56px}}
 
-/* ===== Stats ===== */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.stat{background:var(--surface-1);border-radius:20px;padding:16px 8px;text-align:center}
-.stat b{display:block;font-size:32px;font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums}
-.stat span{font-size:13px;color:var(--on-surface-var)}
+/* ============ Launcher mock (Cactus UI) ============ */
+.mock{background:var(--bg);border-radius:var(--r-6);box-shadow:var(--sh-5),0 0 0 1px rgba(0,0,0,.04);overflow:hidden;display:grid;grid-template-columns:164px 1fr;min-height:420px;font-size:12px;transform:perspective(1600px) rotateY(-4deg) rotateX(2deg);transition:transform .5s ease}
+.mock:hover{transform:perspective(1600px) rotateY(0) rotateX(0)}
+.m-side{background:var(--bg-2);padding:14px;display:flex;flex-direction:column;gap:14px}
+.m-profile{display:flex;align-items:center;gap:8px;padding:6px 6px 0}
+.m-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--cactus),#5E7CE2)}
+.m-profile b{font-size:12px;display:block;font-weight:600}
+.m-profile small{font-size:10px;color:var(--text-2)}
+.m-menu{display:flex;flex-direction:column;gap:3px}
+.m-item{padding:8px 10px;border-radius:10px;font-size:12px;color:var(--text)}
+.m-item.sel{background:var(--fill);font-weight:500}
+.m-spacer{flex:1}
+.m-np{display:flex;align-items:center;gap:8px;padding:8px;background:#fff;border-radius:12px;box-shadow:var(--sh-2)}
+.m-np .art{width:28px;height:28px;border-radius:8px;background:var(--blue-light);position:relative;overflow:hidden}
+.m-np .art::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 4px,rgba(0,113,227,.35) 4px 6px)}
+.m-np .ti{font-size:9px;color:var(--text-2);font-weight:500}
+.m-np .tt{font-size:11px;font-weight:500}
+.eq{display:flex;gap:2px;align-items:flex-end;height:12px;margin-left:auto}
+.eq i{width:3px;background:var(--blue);border-radius:2px;animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:4px}50%{height:12px}}
+.m-main{padding:22px;display:flex;flex-direction:column;gap:16px}
+.m-head{display:flex;justify-content:space-between;align-items:center}
+.m-head h3{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.m-search{width:130px;height:28px;border-radius:9px;background:var(--fill);display:flex;align-items:center;padding:0 10px;color:var(--text-2);font-size:11px}
+.m-feat{background:var(--dark);border-radius:18px;padding:20px;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;min-height:150px;position:relative;overflow:hidden}
+.m-feat::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 100% 0%,rgba(127,179,71,.55),transparent 60%),radial-gradient(80% 80% at 0% 100%,rgba(0,113,227,.45),transparent 60%)}
+.m-feat>*{position:relative}
+.m-feat .k{font-size:10px;color:var(--blue-light);margin-bottom:6px}
+.m-feat .h{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.05}
+.m-feat .s{font-size:11px;color:#EBEBF0;margin-top:6px;max-width:220px}
+.m-play{background:var(--blue);color:#fff;padding:10px 18px;border-radius:12px;font-weight:500;font-size:13px;box-shadow:0 6px 16px rgba(0,113,227,.4)}
+.m-sub{font-size:14px;font-weight:600}
+.m-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.m-card{background:#fff;border-radius:14px;padding:12px;box-shadow:var(--sh-3)}
+.m-card .ic{width:30px;height:30px;border-radius:9px;margin-bottom:10px;display:block}
+.m-card b{display:block;font-size:12px;font-weight:600}
+.m-card small{font-size:10px;color:var(--text-2)}
+@media(max-width:560px){.mock{grid-template-columns:1fr}.m-side{display:none}.m-cards{grid-template-columns:1fr 1fr}}
 
-/* ===== Goals ===== */
-.goals{display:flex;flex-direction:column;gap:10px}
-details.goal{position:relative;overflow:hidden;background:var(--surface-1);border-radius:20px;transition:background .2s}
-details.goal[open]{background:var(--primary-container);color:var(--on-primary-container)}
-summary{list-style:none;display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer}
-summary::-webkit-details-marker{display:none}
-.em{width:52px;height:52px;flex:none;border-radius:16px;background:var(--secondary-container);display:grid;place-items:center;font-size:26px;
-  transition:transform .3s ease-out}
-details[open] .em{transform:rotate(-8deg) scale(1.08);background:var(--surface)}
-.gt{flex:1}
-.gt b{display:block;font-size:16px;font-weight:600}
-.gt small{font-size:13px;color:var(--on-surface-var)}
-details[open] .gt small{color:inherit;opacity:.8}
-.chev{font-size:20px;color:var(--on-surface-var);transition:transform .2s}
-details[open] .chev{transform:rotate(180deg);color:inherit}
-.goal p{padding:0 16px 16px 82px;font-size:14px;line-height:1.5}
+/* ============ Cards / grid ============ */
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:960px){.g3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:var(--r-5);padding:24px;box-shadow:var(--sh-3);transition:transform .2s ease,box-shadow .2s ease}
+.card-hover:hover{transform:translateY(-3px);box-shadow:var(--sh-4)}
+.card .icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:16px}
+.card .icon svg{width:24px;height:24px}
+.ic-green{background:linear-gradient(135deg,#7FB347,#4FA35C)}
+.ic-blue{background:linear-gradient(135deg,#0071E3,#5E7CE2)}
+.ic-orange{background:linear-gradient(135deg,#FF9F0A,#D98E73)}
+.ic-purple{background:linear-gradient(135deg,#AF52DE,#5E7CE2)}
+.ic-dark{background:linear-gradient(135deg,#1D1D1F,#48484A)}
+.ic-teal{background:linear-gradient(135deg,#30B0C7,#34C759)}
+.card h3{margin-bottom:8px}
+.card.feature-big{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+@media(max-width:960px){.card.feature-big{grid-template-columns:1fr}}
+@media(max-width:600px){.card.feature-big{grid-column:span 1}}
+.badge{display:inline-flex;padding:4px 8px;border-radius:var(--pill);font-size:11px;font-weight:600;letter-spacing:.04em}
+.badge.green{background:var(--cactus-soft);color:var(--cactus-dark)}
+.badge.new{background:var(--dark);color:#fff}
 
-/* ===== Special badges ===== */
-.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;
-  background:var(--tertiary-container);color:var(--on-tertiary-container);margin-left:8px;vertical-align:middle}
+/* ============ Stats ============ */
+.stats{background:#fff;border-radius:var(--r-6);box-shadow:var(--sh-3);padding:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat .n{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.stat .n span{font-size:15px;color:var(--text-2);font-weight:500;letter-spacing:0;margin-left:4px}
+.stat p{margin-top:8px}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
 
-/* ===== Telegram ===== */
-.tg{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;border-radius:24px;padding:18px;
-  background:linear-gradient(135deg,#2aabee,#1c7ed6);color:#fff;box-shadow:0 8px 20px rgba(42,171,238,.3)}
-.tg .ava{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
-.tg .txt{flex:1}
-.tg b{display:block;font-size:17px}
-.tg span{font-size:14px;opacity:.92}
-.tg .go{background:#fff;color:#1c7ed6;font-weight:700;font-size:14px;padding:10px 16px;border-radius:20px}
+/* ============ Comparison ============ */
+.compare{background:#fff;border-radius:var(--r-6);box-shadow:var(--sh-3);overflow:auto;-webkit-overflow-scrolling:touch}
+.compare table{width:100%;border-collapse:collapse;font-size:14px}
+.compare th,.compare td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--bg);vertical-align:top}
+.compare th{font-size:12px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em;background:var(--bg-2);white-space:nowrap;position:sticky;top:0}
+.compare th.hl{color:var(--cactus-dark);background:var(--cactus-soft)}
+.compare td.hl{background:#F6FBF4}
+.compare td:first-child{font-weight:500;white-space:nowrap}
+.compare tr:last-child td{border-bottom:0}
+.compare.wide table{min-width:1040px}
+.compare.wide td:first-child,.compare.wide th:first-child{position:sticky;left:0;background:#fff;z-index:1}
+.compare.wide th:first-child{background:var(--bg-2)}
+.yes{display:inline-flex;align-items:center;gap:6px;color:var(--cactus-dark);font-weight:500}
+.yes::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5'/%3E%3C/svg%3E") center/12px no-repeat}
+.part{display:inline-flex;align-items:center;gap:6px;color:#B25E00;font-weight:500}
+.part::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:#FF9F0A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M4.5 8h7'/%3E%3C/svg%3E") center/12px no-repeat}
+.no{display:inline-flex;align-items:center;gap:6px;color:var(--text-3)}
+.no::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--fill-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M5 5l6 6M11 5l-6 6'/%3E%3C/svg%3E") center/11px no-repeat}
+.nd{color:var(--text-3)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:13px;color:var(--text-2)}
+@media(max-width:600px){.compare th,.compare td{padding:12px 14px;font-size:13px}}
 
-/* ===== Final CTA ===== */
-.final{position:relative;overflow:hidden;border-radius:28px;padding:32px 20px;text-align:center;color:#fff;
-  background:linear-gradient(135deg,#0b57d0,#7b4dff)}
-.final .big{font-size:56px}
-.final h3{font-size:30px;font-weight:800;margin:6px 0}
-.final p{opacity:.94;margin-bottom:20px;line-height:1.5}
-.final .btn{width:100%;background:#fff;color:#0b57d0;font-size:17px;height:56px;border-radius:28px}
-.final .btn.done{background:#c4f5d2;color:#0a5a2a}
-.final .btn2{margin-top:10px;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.3)}
+/* ============ Steps ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{background:#fff;border-radius:var(--r-5);padding:22px;box-shadow:var(--sh-3)}
+.step .num{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
 
-footer{text-align:center;font-size:12px;color:var(--on-surface-var);padding:20px 16px}
+/* ============ Dynamic Player demo ============ */
+.player-demo{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:center;background:var(--dark);color:#fff;border-radius:var(--r-7);padding:48px;position:relative;overflow:hidden}
+.player-demo::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 90% at 100% 100%,rgba(0,113,227,.45),transparent 60%),radial-gradient(60% 60% at 0% 0%,rgba(127,179,71,.35),transparent 60%)}
+.player-demo>*{position:relative}
+.player-demo .t-body{color:#EBEBF0}
+.player-demo ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:10px;color:#EBEBF0;font-size:15px}
+.player-demo li{display:flex;gap:10px;align-items:center}
+.player-demo li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue-light);flex:none}
+.popup{background:#fff;color:var(--text);border-radius:var(--r-4);padding:16px;box-shadow:var(--sh-4);display:flex;flex-direction:column;gap:14px}
+.popup .ph{display:flex;justify-content:space-between;font-size:13px}
+.popup .ph b{font-weight:600}.popup .ph span{color:var(--text-2);font-size:12px}
+.popup .now{display:flex;gap:12px;align-items:center}
+.popup .cover{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,var(--blue-light),var(--blue));flex:none}
+.popup .now b{font-size:14px;font-weight:500;display:block}.popup .now small{font-size:12px;color:var(--text-2)}
+.src{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:var(--pill);background:var(--cactus-soft);color:var(--cactus-dark);font-size:11px;font-weight:600}
+.src::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.track{height:4px;background:var(--fill);border-radius:2px;overflow:hidden}
+.track i{display:block;height:100%;width:36%;background:var(--blue);border-radius:2px;animation:prog 14s linear infinite}
+@keyframes prog{from{width:36%}to{width:100%}}
+.times{display:flex;justify-content:space-between;font-size:11px;color:var(--text-2);margin-top:6px}
+.ctrls{display:flex;justify-content:center;align-items:center;gap:24px;font-size:18px}
+.ctrls .pp{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:15px}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.toggle{width:44px;height:26px;border-radius:13px;background:var(--fill-2);position:relative;transition:.2s;flex:none}
+.toggle::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:var(--sh-1);transition:.2s}
+.toggle.on{background:var(--green)}.toggle.on::after{left:21px}
+@media(max-width:860px){.player-demo{grid-template-columns:1fr;padding:32px}}
 
-/* ===== Extended FAB ===== */
-.fab{position:fixed;right:max(16px,calc(50% - 284px));bottom:calc(20px + env(safe-area-inset-bottom));z-index:20;overflow:hidden;
-  height:60px;padding:0 20px;border-radius:18px;background:var(--primary);color:var(--on-primary);
-  display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;
-  box-shadow:0 6px 14px rgba(0,0,0,.22);transition:padding .25s}
-.fab .label{max-width:200px;white-space:nowrap;overflow:hidden;transition:max-width .25s,opacity .25s}
-.fab.small .label{max-width:0;opacity:0}
-.fab.small{padding:0 18px;gap:0}
+/* ============ Changelog / expanders ============ */
+.expander{background:#fff;border-radius:var(--r-4);box-shadow:var(--sh-3);margin-bottom:12px;overflow:hidden}
+.expander summary{list-style:none;display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer;user-select:none}
+.expander summary::-webkit-details-marker{display:none}
+.expander summary:hover{background:var(--bg-2)}
+.exp-title{font-size:17px;font-weight:600;display:block}
+.exp-sub{font-size:13px;color:var(--text-2);display:block;margin-top:2px}
+.caret{margin-left:auto;width:28px;height:28px;border-radius:50%;background:var(--fill);display:grid;place-items:center;color:var(--text-2);transition:transform .2s;flex:none}
+.expander[open] .caret{transform:rotate(180deg)}
+.exp-body{padding:0 22px 22px}
+.list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.list li{display:flex;gap:12px;padding:12px 14px;background:var(--bg);border-radius:12px;font-size:15px;color:var(--text-2)}
+.list li b{color:var(--text);font-weight:600}
+.list .em{flex:none;width:28px;height:28px;border-radius:8px;background:#fff;display:grid;place-items:center;font-size:14px;box-shadow:var(--sh-1)}
 
-/* ===== Snackbar ===== */
-.snack{position:fixed;left:16px;right:16px;max-width:568px;margin:0 auto;bottom:96px;z-index:30;background:var(--inverse-surface);
-  color:var(--inverse-on);padding:14px 16px;border-radius:8px;font-size:14px;opacity:0;transform:translateY(20px);transition:.2s;pointer-events:none}
-.snack.show{opacity:1;transform:none}
+/* ============ Info rows (safety) ============ */
+.row-card{display:flex;gap:16px;padding:22px;background:#fff;border-radius:var(--r-4);box-shadow:var(--sh-3)}
+.row-card .ri{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center}
+.row-card .ri svg{width:20px;height:20px}
+.ri.ok{background:var(--cactus-soft);color:var(--cactus-dark)}
+.ri.warn{background:#FFF4E5;color:#FF9F0A}
+.ri.info{background:var(--blue-soft);color:var(--blue)}
 
-/* ===== Ripple ===== */
-.rip{position:absolute;border-radius:50%;background:currentColor;opacity:.2;transform:scale(0);animation:rip .5s ease-out forwards;pointer-events:none}
-@keyframes rip{to{transform:scale(4);opacity:0}}
-.conf{position:fixed;top:-40px;z-index:50;font-size:26px;pointer-events:none;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+/* ============ Download ============ */
+.dl{background:#fff;border-radius:var(--r-6);box-shadow:var(--sh-3);padding:28px;display:flex;flex-wrap:wrap;align-items:center;gap:20px}
+.dl .big-logo{width:64px;height:64px;border-radius:18px;background:var(--cactus);display:grid;place-items:center;font-size:30px;color:#fff;font-weight:700}
+.dl-actions{display:flex;flex-wrap:wrap;gap:10px;margin-left:auto}
+.link-tile{display:flex;align-items:center;gap:14px;padding:18px 20px;color:var(--text)}
+.link-tile .li{width:40px;height:40px;border-radius:12px;background:var(--bg);display:grid;place-items:center;color:var(--text);flex:none}
+.link-tile .li svg{width:18px;height:18px}
+.link-tile .arr{margin-left:auto;color:var(--text-3)}
 
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ============ Support ============ */
+.support{background:linear-gradient(135deg,#E8F3E6,#E5F1FC);border-radius:var(--r-7);padding:48px 32px;text-align:center}
+.support .big{font-size:40px}
+
+/* ============ Footer ============ */
+footer{padding:48px 0 32px;border-top:1px solid rgba(0,0,0,.06);margin-top:24px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.f-col h4{font-size:13px;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px}
+.f-col a{display:block;color:var(--text);font-size:14px;padding:4px 0}
+.f-col a:hover{color:var(--blue)}
+.f-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:36px;padding-top:20px;border-top:1px solid rgba(0,0,0,.06)}
+@media(max-width:700px){.f-grid{grid-template-columns:1fr}}
+
+/* ============ Reveal / toast ============ */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.mock{transform:none}.eq i,.track i{animation:none}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--dark);color:#fff;padding:12px 18px;border-radius:var(--pill);display:flex;align-items:center;gap:8px;font-size:14px;box-shadow:var(--sh-4);transition:.25s;z-index:200}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast svg{width:16px;height:16px;color:var(--green)}
 </style>
 </head>
 <body>
 
-<header class="appbar" id="bar">
-  <div class="logo">ШКП</div>
-  <h1>ШКП · №11</h1>
-  <button class="icon-btn ripple" id="shareTop" aria-label="Поделиться">⤴</button>
+<a class="skip" href="#main">К основному содержимому</a>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#main">
+      <span class="logo" aria-hidden="true">C</span>
+      Cactus Launcher <span class="v2">2</span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a class="is-active" href="#main">Главная</a>
+      <a href="#features">Фишки</a>
+      <a href="#compare">Сравнение</a>
+      <a href="#changelog">Изменения</a>
+      <a href="#safety">Безопасность</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="top-actions">
+      <a class="btn btn-primary btn-sm" href="#download">Скачать</a>
+    </div>
+  </div>
 </header>
 
-<div class="hero">
-  <div class="bg" id="bg">
-    <img src="https://i9.photo.2gis.com/photo-gallery/415df76d-7dab-4588-9aac-d394046a764b.jpg"
-         alt="Школа №11" referrerpolicy="no-referrer" onerror="this.remove()">
-  </div>
-  <div class="hero-content">
-    <div class="chips">
-      <span class="chip live">Выборы идут</span>
-      <span class="chip">🏫 Школа №11</span>
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">🌵 Cactus Launcher 2 · бесплатно навсегда</span>
+      <h1 class="t-display" style="margin-top:18px">
+        Minecraft запускается<br><span class="accent">быстрее</span>, чем раньше
+      </h1>
+      <div class="slogan">Лучше, чем было.</div>
+      <p class="hero-sub">
+        Полностью переписан на Java. Буст FPS, ультранизкое потребление ОЗУ,
+        перевод описаний модов и Dynamic Player, который показывает музыку,
+        которую вы сейчас слушаете. Ваниль, Forge, Fabric и NeoForge — в один клик.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#download">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.6v8.2M4.6 6.6L8 10l3.4-3.4M2 12.2v1.2a1 1 0 001 1h10a1 1 0 001-1v-1.2"/></svg>
+          Скачать бесплатно
+        </a>
+        <a class="btn btn-lg" href="https://github.com/cactusmclauncher/cactus-launcher-2" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <div class="hero-meta">
+        <span class="meta-chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg>VirusTotal — чисто</span>
+        <span class="meta-chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg>Windows 10 / 11</span>
+        <span class="meta-chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg>Написан на Java</span>
+        <span class="meta-chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg>0 ₽</span>
+      </div>
     </div>
-    <h2>
-      <span class="w">Меньше слов —</span><br>
-      <span class="w grad">больше дела</span>
-    </h2>
-    <p>Школьная коммунистическая партия 💙</p>
-    <div class="btns">
-      <a class="btn filled ripple" href="#vote">🗳️ Голосую</a>
-      <a class="btn glass ripple" href="https://t.me/ShKPSchool11" target="_blank" rel="noopener">✈️ Канал</a>
+
+    <!-- ---- Мок окна лаунчера в стиле Cactus UI ---- -->
+    <div class="mock" role="img" aria-label="Окно Cactus Launcher 2: слева профиль Nick, меню Главная, Сборки, Моды, Миры, Новости и Dynamic Player «Сейчас слушаете Sweden · C418»; справа заголовок Главная, баннер «Новое обновление» с кнопкой Играть и карточки недавних сборок.">
+      <aside class="m-side">
+        <div class="m-profile">
+          <span class="m-avatar"></span>
+          <span><b>Nick</b><small>Офлайн-профиль</small></span>
+        </div>
+        <div class="m-menu">
+          <div class="m-item sel">Главная</div>
+          <div class="m-item">Сборки</div>
+          <div class="m-item">Моды</div>
+          <div class="m-item">Миры</div>
+          <div class="m-item">Новости</div>
+        </div>
+        <div class="m-spacer"></div>
+        <div class="m-np">
+          <span class="art"></span>
+          <span><div class="ti">Сейчас слушаете</div><div class="tt">Sweden · C418</div></span>
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+        <div class="m-item" style="color:var(--text-2)">Настройки</div>
+      </aside>
+      <div class="m-main">
+        <div class="m-head">
+          <h3>Главная</h3>
+          <div class="m-search">Поиск</div>
+        </div>
+        <div class="m-feat">
+          <div>
+            <div class="k">Новое обновление</div>
+            <div class="h">Cactus 2.0</div>
+            <div class="s">Буст FPS, меньше ОЗУ, Dynamic Player. Установка в одно нажатие.</div>
+          </div>
+          <div class="m-play">Играть</div>
+        </div>
+        <div class="m-sub">Недавние сборки</div>
+        <div class="m-cards">
+          <div class="m-card"><span class="ic" style="background:var(--cactus)"></span><b>Vanilla 1.21.1</b><small>Играли вчера</small></div>
+          <div class="m-card"><span class="ic" style="background:#5E7CE2"></span><b>Fabric 1.20.4</b><small>3 мода · 2 дня назад</small></div>
+          <div class="m-card"><span class="ic" style="background:#C9A77C"></span><b>Creative</b><small>Неделю назад</small></div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section style="padding-top:8px;padding-bottom:40px">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><div class="n">×2 <span>быстрее</span></div><p class="t-caption">Запуск на Java вместо Python-сборки</p></div>
+      <div class="stat"><div class="n">−40 <span>% ОЗУ</span></div><p class="t-caption">Сервисы лаунчера выгружаются при старте игры</p></div>
+      <div class="stat"><div class="n">4 <span>подсистемы</span></div><p class="t-caption">Ваниль, Forge, Fabric, NeoForge</p></div>
+      <div class="stat"><div class="n">0 <span>₽</span></div><p class="t-caption">Без донатов, подписок и рекламы</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow blue">Фишки</span>
+      <h2 class="t-title-l">Четыре причины обновиться</h2>
+      <p class="t-body">Не просто новый дизайн. Второй Cactus переписан с нуля и работает иначе под капотом.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card card-hover reveal">
+        <span class="icon ic-green" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        </span>
+        <span class="badge new">Новое</span>
+        <h3 class="t-subtitle" style="margin-top:10px">Буст FPS</h3>
+        <p class="t-body">Не качаем фиксированный список модов, а оптимизируем сам процесс запуска: аргументы JVM, сборщик мусора, порядок загрузки библиотек. Больше кадров без единого лишнего мода.</p>
+      </div>
+
+      <div class="card card-hover reveal">
+        <span class="icon ic-blue" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+        </span>
+        <span class="badge new">Новое</span>
+        <h3 class="t-subtitle" style="margin-top:10px">Ультранизкое потребление ОЗУ</h3>
+        <p class="t-body">При запуске игры лаунчер выгружает свои сервисы и остаётся в памяти крошечным процессом. Освобождённая память достаётся Minecraft — и FPS растёт ещё раз.</p>
+      </div>
+
+      <div class="card card-hover reveal">
+        <span class="icon ic-purple" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M8.5 3v2M6 9c1 3 3 5 6 7M11 9c-1 4-4 7-7 9"/><path d="M14 20l4-9 4 9M15.5 17h5"/></svg>
+        </span>
+        <span class="badge new">Новое</span>
+        <h3 class="t-subtitle" style="margin-top:10px">Перевод описания модов</h3>
+        <p class="t-body">Знайте всегда, что делает этот мод. Описания из каталога переводятся на русский прямо в карточке — не нужно гуглить, что такое «Entity Culling».</p>
+      </div>
+
+      <div class="card card-hover reveal">
+        <span class="icon ic-orange" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l12-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </span>
+        <span class="badge new">Новое</span>
+        <h3 class="t-subtitle" style="margin-top:10px">Dynamic Player</h3>
+        <p class="t-body">Показывает музыку, которую вы сейчас слушаете: трек, исполнитель и обложка из Spotify, Яндекс Музыки, браузера или любого другого плеера появляются в сайдбаре. Пауза, следующий трек, громкость — без Alt+Tab.</p>
+      </div>
+
+      <div class="card card-hover reveal feature-big">
+        <div>
+          <span class="icon ic-dark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2c-1 2 1 3 1 5s-2 3-2 5"/><path d="M14 2c-1 2 1 3 1 5s-2 3-2 5"/><path d="M4 14h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M20 15h1a2 2 0 010 4h-1"/></svg>
+          </span>
+          <span class="badge green">Под капотом</span>
+          <h3 class="t-subtitle" style="margin-top:10px">Написан на Java</h3>
+          <p class="t-body">Больше скорости, лучшая производительность. Та же виртуальная машина, что и у самой игры: меньше лишних процессов, быстрый холодный старт, честный нативный интерфейс и никаких ложных срабатываний из-за PyInstaller.</p>
+        </div>
+        <ul class="list">
+          <li><span class="em">⚡</span><span><b>Мгновенный старт.</b> Окно открывается до того, как вы успели моргнуть.</span></li>
+          <li><span class="em">🧠</span><span><b>Один рантайм.</b> Лаунчер и игра делят общую Java — без дублей.</span></li>
+          <li><span class="em">🛡</span><span><b>Чистые сборки.</b> Обычный JAR вместо упакованного EXE.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:56px">
+      <h2 class="t-title">И всё, что было в Cactus Lite — осталось</h2>
+    </div>
+    <div class="grid g3">
+      <div class="card card-hover reveal">
+        <span class="icon ic-teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M4 6.5l8 4.5 8-4.5M12 11v9"/></svg></span>
+        <h3 class="t-subtitle">Forge, Fabric, NeoForge</h3>
+        <p class="t-body">Выбор загрузчика сегментами при создании сборки. Буквы у версий: F — Forge, G — Fabric, N — NeoForge.</p>
+      </div>
+      <div class="card card-hover reveal">
+        <span class="icon ic-blue" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg></span>
+        <h3 class="t-subtitle">Каталог и менеджер модов</h3>
+        <p class="t-body">Sodium, Iris, Jade и другие с официальных источников. Включение переключателем, удаление поштучно, установка перетаскиванием.</p>
+      </div>
+      <div class="card card-hover reveal">
+        <span class="icon ic-green" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></span>
+        <h3 class="t-subtitle">Скины и профили</h3>
+        <p class="t-body">Скин выбирается в лаунчере и сам встаёт в игру. Офлайн-профили с никнеймом и аватаром.</p>
+      </div>
+      <div class="card card-hover reveal">
+        <span class="icon ic-orange" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h16M4 12a8 8 0 0116 0"/><circle cx="12" cy="12" r="1.5"/></svg></span>
+        <h3 class="t-subtitle">Умное выделение ОЗУ</h3>
+        <p class="t-body">Слайдер с меткой AUTO, подсказки «занято» и «рекомендовано». Недоступную память выбрать нельзя.</p>
+      </div>
+      <div class="card card-hover reveal">
+        <span class="icon ic-purple" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg></span>
+        <h3 class="t-subtitle">Сборки, миры, ресурспаки</h3>
+        <p class="t-body">Каждая сборка — своя папка, свои моды, миры и ресурспаки. Вкладки «Обзор», «Моды», «Миры», «Ресурспаки», «Настройки».</p>
+      </div>
+      <div class="card card-hover reveal">
+        <span class="icon ic-dark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="5" width="14" height="14" rx="3"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg></span>
+        <h3 class="t-subtitle">«Играть» → «Закрыть»</h3>
+        <p class="t-body">Пока игра открыта, кнопка превращается в «Закрыть». Плюс «Скинуть настройки», если что-то напортачил.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DYNAMIC PLAYER ============ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="player-demo reveal">
+      <div>
+        <span class="eyebrow" style="background:rgba(255,255,255,.12);color:var(--blue-light)">Dynamic Player</span>
+        <h2 class="t-title-l" style="margin-top:14px">Видит, что вы слушаете прямо сейчас</h2>
+        <p class="t-body" style="margin-top:12px;max-width:50ch">Включили музыку в Spotify, Яндекс Музыке, VK или в браузере? Dynamic Player подхватит трек и покажет его в сайдбаре лаунчера — с обложкой, прогрессом и кнопками управления.</p>
+        <ul>
+          <li>Любой источник: системные медиа-сессии Windows</li>
+          <li>Пауза, следующий трек и громкость из лаунчера</li>
+          <li>Уходит в фон при запуске игры и не ест память</li>
+        </ul>
+      </div>
+      <div class="popup" aria-label="Пример окна Dynamic Player">
+        <div class="ph"><b>Сейчас слушаете</b><span>Громкость 70%</span></div>
+        <div class="now"><span class="cover"></span><span><b>Sweden</b><small>C418</small><br><span class="src">Spotify</span></span></div>
+        <div><div class="track"><i></i></div><div class="times"><span>1:12</span><span>3:30</span></div></div>
+        <div class="ctrls"><span>⏮</span><span class="pp">▶</span><span>⏭</span></div>
+        <div class="toggle-row"><span>Показывать плеер</span><span class="toggle on" aria-hidden="true"></span></div>
+        <div class="toggle-row"><span>Показывать обложку</span><span class="toggle on" aria-hidden="true"></span></div>
+        <div class="toggle-row"><span>Скрывать во время игры</span><span class="toggle" aria-hidden="true"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section id="compare" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Сравнение</span>
+      <h2 class="t-title-l">Cactus 2 против других лаунчеров</h2>
+      <p class="t-body">KLauncher, SK Launcher, TLauncher, Legacy Launcher, Prism и Millida — честно, по пунктам.</p>
+    </div>
+
+    <div class="compare wide reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Возможность</th>
+            <th class="hl">Cactus 2</th>
+            <th>KLauncher</th>
+            <th>SK Launcher</th>
+            <th>TLauncher</th>
+            <th>Legacy Launcher</th>
+            <th>Prism</th>
+            <th>Millida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Движок</td><td class="hl"><span class="yes">Java</span></td><td>Java</td><td>Java</td><td>Java</td><td>Java</td><td>C++ / Qt</td><td class="nd">—</td></tr>
+          <tr><td>Открытый код</td><td class="hl"><span class="yes">Да, GitHub</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="part">Частично</span></td><td><span class="yes">Да, GPL-3</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Офлайн-профили</td><td class="hl"><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="part">Только с лицензией</span></td><td><span class="yes">Да</span></td></tr>
+          <tr><td>Forge / Fabric / NeoForge</td><td class="hl"><span class="yes">Все три</span></td><td><span class="part">Forge, Fabric</span></td><td><span class="part">Forge, Fabric</span></td><td><span class="part">Forge, Fabric</span></td><td><span class="yes">Все три</span></td><td><span class="yes">Все три + Quilt</span></td><td><span class="part">Forge, Fabric</span></td></tr>
+          <tr><td>Авто-установка Java под версию</td><td class="hl"><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="part">Встроенная</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td class="nd">—</td></tr>
+          <tr><td>Буст FPS без обязательных модов</td><td class="hl"><span class="yes">Оптимизация запуска</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Выгрузка сервисов при старте игры</td><td class="hl"><span class="yes">Да</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Перевод описаний модов</td><td class="hl"><span class="yes">Да, на русский</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Каталог модов</td><td class="hl"><span class="yes">Да</span></td><td><span class="part">Ограниченный</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td><td><span class="yes">Modrinth, CurseForge</span></td><td><span class="yes">Да</span></td></tr>
+          <tr><td>Отдельные сборки (инстансы)</td><td class="hl"><span class="yes">Да</span></td><td><span class="part">Профили</span></td><td><span class="part">Профили</span></td><td><span class="part">Профили</span></td><td><span class="part">Профили</span></td><td><span class="yes">Да</span></td><td><span class="yes">Да</span></td></tr>
+          <tr><td>Dynamic Player — показывает, что вы слушаете</td><td class="hl"><span class="yes">Да</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td><td><span class="no">Нет</span></td></tr>
+          <tr><td>Реклама и промо внутри</td><td class="hl"><span class="yes">Нет</span></td><td class="nd">—</td><td><span class="yes">Нет</span></td><td><span class="part">Есть</span></td><td><span class="yes">Нет</span></td><td><span class="yes">Нет</span></td><td class="nd">—</td></tr>
+          <tr><td>Платформы</td><td class="hl">Windows</td><td>Windows</td><td>Win / Mac / Linux</td><td>Win / Mac / Linux</td><td>Win / Mac / Linux</td><td>Win / Mac / Linux</td><td>Windows</td></tr>
+          <tr><td>Цена</td><td class="hl"><span class="yes">0 ₽</span></td><td>0 ₽</td><td>0 ₽</td><td>0 ₽</td><td>0 ₽</td><td>0 ₽</td><td>0 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend reveal">
+      <span><span class="yes">Есть</span></span>
+      <span><span class="part">Частично / с оговорками</span></span>
+      <span><span class="no">Нет</span></span>
+      <span class="nd">— нет данных</span>
+    </div>
+    <p class="t-caption reveal" style="margin-top:10px;max-width:72ch">Данные о сторонних лаунчерах взяты из их публичных описаний и могут меняться с обновлениями — проверяйте на официальных сайтах. Нашли неточность? Напишите в канал, поправим.</p>
+
+    <div class="sec-head reveal" style="margin-top:48px">
+      <h2 class="t-title">Лучше, чем было. Буквально.</h2>
+      <p class="t-body">Что изменилось со времён Cactus Lite Minecraft 1.2.</p>
+    </div>
+    <div class="compare reveal">
+      <table>
+        <thead><tr><th>Возможность</th><th>Cactus Lite 1.2</th><th class="hl">Cactus Launcher 2</th></tr></thead>
+        <tbody>
+          <tr><td>Язык</td><td>Python + PyInstaller</td><td class="hl"><span class="yes">Java</span></td></tr>
+          <tr><td>Буст FPS</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Оптимизация запуска</span></td></tr>
+          <tr><td>Потребление ОЗУ</td><td>Обычное</td><td class="hl"><span class="yes">Ультранизкое, сервисы выгружаются</span></td></tr>
+          <tr><td>Перевод описаний модов</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Да, прямо в карточке</span></td></tr>
+          <tr><td>Dynamic Player</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Показывает, что вы слушаете</span></td></tr>
+          <tr><td>Автоустановка Java</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Под нужную версию Minecraft</span></td></tr>
+          <tr><td>Сборки с отдельными папками</td><td><span class="no">Нет</span></td><td class="hl"><span class="yes">Да</span></td></tr>
+          <tr><td>Ложные срабатывания антивируса</td><td>Бывают (PyInstaller)</td><td class="hl"><span class="yes">Практически нет</span></td></tr>
+          <tr><td>Цена</td><td>0 ₽</td><td class="hl"><span class="yes">0 ₽</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW TO START ============ -->
+<section id="start" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="t-title-l">Начать за четыре шага</h2></div>
+    <div class="steps">
+      <div class="step reveal"><span class="num">1</span><div class="t-subtitle">Скачай</div><p class="t-body" style="margin-top:4px">Забери сборку с GitHub или из поста в канале.</p></div>
+      <div class="step reveal"><span class="num">2</span><div class="t-subtitle">Запусти</div><p class="t-body" style="margin-top:4px">Установка не нужна — Java лаунчер поставит сам.</p></div>
+      <div class="step reveal"><span class="num">3</span><div class="t-subtitle">Собери</div><p class="t-body" style="margin-top:4px">Создай сборку: версия, загрузчик, память, моды.</p></div>
+      <div class="step reveal"><span class="num">4</span><div class="t-subtitle">Играй</div><p class="t-body" style="margin-top:4px">Нажми «Играть» — буст FPS включится сам.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHANGELOG ============ -->
+<section id="changelog" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">История версий</span>
+      <h2 class="t-title-l">Изменения</h2>
+    </div>
+    <div class="reveal">
+      <details class="expander" open>
+        <summary>
+          <span><span class="exp-title">v2.0 — Лучше, чем было.</span><span class="exp-sub">Актуальная версия · полная переработка</span></span>
+          <span class="badge new">Последняя</span>
+          <span class="caret" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span>
+        </summary>
+        <div class="exp-body">
+          <ul class="list">
+            <li><span class="em">☕</span><span><b>Переписан на Java:</b> больше скорости, лучшая производительность, быстрый старт.</span></li>
+            <li><span class="em">⚡</span><span><b>Буст FPS:</b> оптимизируем процесс запуска, а не навязываем список модов.</span></li>
+            <li><span class="em">💾</span><span><b>Ультранизкое потребление ОЗУ:</b> при запуске игры лаунчер выгружает свои сервисы.</span></li>
+            <li><span class="em">🌐</span><span><b>Перевод описаний модов:</b> всегда понятно, что делает мод.</span></li>
+            <li><span class="em">🎵</span><span><b>Dynamic Player:</b> показывает музыку, которую вы сейчас слушаете, и управляет ею из лаунчера.</span></li>
+            <li><span class="em">☕</span><span><b>Автоустановка Java:</b> лаунчер сам ставит нужную версию под выбранный Minecraft.</span></li>
+            <li><span class="em">🎨</span><span><b>Новый дизайн Cactus UI:</b> сайдбар, сборки, вкладки, сегменты, переключатели.</span></li>
+            <li><span class="em">📦</span><span><b>Сборки:</b> у каждой свои моды, миры, ресурспаки и настройки JVM.</span></li>
+          </ul>
+          <div style="margin-top:18px"><a class="btn btn-primary" href="#download">Скачать v2.0</a></div>
+        </div>
+      </details>
+
+      <details class="expander">
+        <summary>
+          <span><span class="exp-title">Cactus Lite 1.2 — моды и подсистемы</span><span class="exp-sub">Предыдущее поколение</span></span>
+          <span class="caret" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span>
+        </summary>
+        <div class="exp-body">
+          <ul class="list">
+            <li><span class="em">🛠</span><span><b>Подсистемы модов:</b> Forge, Fabric, NeoForge в «Дополнительных».</span></li>
+            <li><span class="em">🔤</span><span><b>Буквы у версий:</b> F, G, N; несовместимые — «(недоступна)».</span></li>
+            <li><span class="em">📂</span><span><b>Страница модов:</b> перетаскивание, каталог Sodium / OptiFine, менеджер модов.</span></li>
+            <li><span class="em">🔄</span><span><b>Сброс настроек</b> и кнопка «Играть» → «Закрыть».</span></li>
+          </ul>
+          <div style="margin-top:18px"><a class="btn" href="https://mega.nz/file/qlwUiBiJ#xKOzRqiyNc-dv6ehqu0vxC9Yo0rRhfNE0Epjj15bVwA" target="_blank" rel="noopener noreferrer">Скачать Lite 1.2</a></div>
+        </div>
+      </details>
+
+      <details class="expander">
+        <summary>
+          <span><span class="exp-title">Cactus Lite 1.0 – 1.1 — первые релизы</span><span class="exp-sub">«Всем дарова!»</span></span>
+          <span class="caret" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span>
+        </summary>
+        <div class="exp-body">
+          <p class="t-body" style="margin-top:12px">Максимально лёгкий и простой лаунчер: меню, выделение памяти в реальном времени, скины и страница «Изменения». Всё, что мы потом сделали лучше.</p>
+          <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="https://mega.nz/file/y8BQHRhB#5-OmG6G5IGIR-ym2MpQQZL76GYvJTIO8KsGhDcGXk5s" target="_blank" rel="noopener noreferrer">Lite 1.1</a>
+            <a class="btn" href="https://mega.nz/file/ngAjHTID#sGxzq2Gvh6jaOylboo22tukHL9TQxCeeAYYfEivd14k" target="_blank" rel="noopener noreferrer">Lite 1.0</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SAFETY ============ -->
+<section id="safety" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">🛡 Безопасность</span>
+      <h2 class="t-title-l">Про антивирус и открытый код</h2>
+    </div>
+    <div class="grid g2">
+      <div class="row-card reveal">
+        <span class="ri ok" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.4"/><path d="M6.6 10.2l2.3 2.3 4.5-4.7"/></svg></span>
+        <div><div class="t-subtitle">VirusTotal — 0 детектов</div><p class="t-body" style="margin-top:4px">Скриншоты и видео проверки в канале. Исходники открыты на GitHub — можно собрать самому.</p></div>
+      </div>
+      <div class="row-card reveal">
+        <span class="ri warn" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.8l7.2 12.6H2.8L10 2.8z"/><path d="M10 8v3.4M10 13.4v.1"/></svg></span>
+        <div><div class="t-subtitle">Если Windows ругается</div><p class="t-body" style="margin-top:4px">В Lite это было ложное срабатывание из-за PyInstaller. Cactus 2 — обычный Java-JAR, таких проблем почти нет. Но качайте только по ссылкам отсюда и из канала.</p></div>
+      </div>
+    </div>
+    <div class="row-card reveal" style="margin-top:16px">
+      <span class="ri info" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="7.4"/><path d="M10 9v4.6M10 6.5v.1"/></svg></span>
+      <div><div class="t-subtitle">Про моды и музыку</div><p class="t-body" style="margin-top:4px">Моды из каталога не входят в лаунчер — они скачиваются с официальных источников и только после вашего нажатия. Dynamic Player ничего не записывает: он читает только название трека и обложку из системного медиа-сеанса.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOWNLOAD ============ -->
+<section id="download" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow blue">📥 Загрузка</span>
+      <h2 class="t-title-l">Скачать Cactus Launcher 2</h2>
+      <p class="t-body">Бесплатно, без регистрации. Windows 10 / 11. Java ставить не нужно — лаунчер сделает это сам.</p>
+    </div>
+    <div class="dl reveal">
+      <span class="big-logo" aria-hidden="true">C</span>
+      <div>
+        <div class="t-title">Cactus Launcher 2.0</div>
+        <p class="t-caption" style="margin-top:4px">Java · буст FPS · низкое ОЗУ · перевод модов · Dynamic Player</p>
+      </div>
+      <div class="dl-actions">
+        <a class="btn btn-primary btn-lg" id="dlBtn" href="https://github.com/cactusmclauncher/cactus-launcher-2/releases/latest" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.6v8.2M4.6 6.6L8 10l3.4-3.4M2 12.2v1.2a1 1 0 001 1h10a1 1 0 001-1v-1.2"/></svg>
+          Скачать v2.0
+        </a>
+        <button class="btn btn-lg" type="button" id="copyBtn" data-link="https://github.com/cactusmclauncher/cactus-launcher-2/releases/latest">Скопировать ссылку</button>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:16px">
+      <a class="card card-hover link-tile reveal" href="https://github.com/cactusmclauncher/cactus-launcher-2" target="_blank" rel="noopener noreferrer">
+        <span class="li"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.18-.89-1.18-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 014 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.52.56.83 1.28.83 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.14.46.55.38A8 8 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span>
+        <span><div class="t-subtitle">Исходный код</div><p class="t-caption">GitHub · cactusmclauncher/cactus-launcher-2</p></span>
+        <span class="arr">›</span>
+      </a>
+      <a class="card card-hover link-tile reveal" href="https://t.me/virrek_cactus" target="_blank" rel="noopener noreferrer">
+        <span class="li"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M14.9 2.3L12.7 13c-.16.74-.6.92-1.21.57l-3.34-2.46-1.61 1.55c-.18.18-.33.33-.67.33l.24-3.4 6.2-5.6c.27-.24-.06-.37-.42-.13L3.86 8.68.57 7.65c-.72-.22-.73-.72.15-1.06L13.86 1.5c.6-.22 1.12.14.93.8z"/></svg></span>
+        <span><div class="t-subtitle">Телеграм-канал</div><p class="t-caption">@virrek_cactus · новые версии</p></span>
+        <span class="arr">›</span>
+      </a>
+      <a class="card card-hover link-tile reveal" href="https://www.youtube.com/@CactunusTech" target="_blank" rel="noopener noreferrer">
+        <span class="li"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M15.3 4.6a1.9 1.9 0 00-1.34-1.35C12.78 2.94 8 2.94 8 2.94s-4.78 0-5.96.31A1.9 1.9 0 00.7 4.6C.4 5.79.4 8 .4 8s0 2.21.3 3.4a1.9 1.9 0 001.34 1.35c1.18.31 5.96.31 5.96.31s4.78 0 5.96-.31a1.9 1.9 0 001.34-1.35c.3-1.19.3-3.4.3-3.4s0-2.21-.3-3.4zM6.5 10.5v-5l4 2.5-4 2.5z"/></svg></span>
+        <span><div class="t-subtitle">YouTube</div><p class="t-caption">@CactunusTech · обзоры</p></span>
+        <span class="arr">›</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Вопросы</span>
+      <h2 class="t-title-l">Частые вопросы</h2>
+    </div>
+    <div class="reveal">
+      <details class="expander"><summary><span class="exp-title">Чем Cactus 2 лучше Cactus Lite?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Он написан на Java, поэтому быстрее стартует и меньше весит в памяти. Добавлены буст FPS через оптимизацию запуска, выгрузка сервисов при старте игры, перевод описаний модов и Dynamic Player. Всё из Lite при этом осталось.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Как работает буст FPS, если вы не ставите моды?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Лаунчер подбирает аргументы JVM и сборщик мусора под ваше железо, грамотно выделяет память и выгружает собственные сервисы. Моды вроде Sodium можно поставить дополнительно из каталога — но это ваш выбор, а не обязательный пакет.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Что такое Dynamic Player?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Это блок в сайдбаре, который показывает музыку, которую вы сейчас слушаете — из Spotify, Яндекс Музыки, браузера или любого плеера, поддерживающего системные медиа-сессии Windows. Там же можно поставить паузу, переключить трек и подкрутить громкость, не выходя из лаунчера.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Нужно ли ставить Java отдельно?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Если Java 17+ уже есть — ничего делать не надо. Если нет, лаунчер сам поставит Java под нужную Вам версию Minecraft.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Лаунчер правда бесплатный?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Да. Полностью. Денег автор не просит — достаточно подписки на канал и реакции 🌵❤️</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Перенесутся ли мои сборки из Cactus Lite?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">Папка .minecraft остаётся общей, так что миры, скины и моды видны сразу. Их можно импортировать в отдельную сборку одной кнопкой.</p></div></details>
+      <details class="expander"><summary><span class="exp-title">Нашёл баг, куда писать?</span><span class="caret"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 4.5L6 8.5l4-4"/></svg></span></summary><div class="exp-body"><p class="t-body" style="margin-top:8px">В личку <a class="link" href="https://t.me/CactunusTech" target="_blank" rel="noopener noreferrer">@CactunusTech</a>, в комментарии в канале или в <a class="link" href="https://github.com/cactusmclauncher/cactus-launcher-2/issues" target="_blank" rel="noopener noreferrer">Issues на GitHub</a>. Автор читает всё и правит — любой отчёт полезен.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUPPORT ============ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="support reveal">
+      <div class="big" aria-hidden="true">🌵</div>
+      <h2 class="t-title-l" style="margin-top:10px">Поддержать проект</h2>
+      <p class="t-body" style="margin:10px auto 0;max-width:56ch">Подписка на канал, звезда на GitHub или просто реакция — уже хорошая помощь.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px">
+        <a class="btn btn-primary" href="https://t.me/virrek_cactus" target="_blank" rel="noopener noreferrer">Подписаться на канал</a>
+        <a class="btn btn-white" href="https://github.com/cactusmclauncher/cactus-launcher-2" target="_blank" rel="noopener noreferrer">Звезда на GitHub</a>
+        <a class="btn btn-white" href="https://t.me/CactunusTech" target="_blank" rel="noopener noreferrer">Написать в поддержку</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-col">
+        <div class="brand"><span class="logo" aria-hidden="true">C</span>Cactus Launcher 2</div>
+        <p class="t-body" style="margin-top:12px;max-width:44ch">Лучше, чем было. Быстрый бесплатный лаунчер Minecraft на Java с поддержкой Forge, Fabric и NeoForge. Автор — @CactunusTech.</p>
+      </div>
+      <div class="f-col">
+        <h4>Разделы</h4>
+        <a href="#features">Фишки</a><a href="#compare">Сравнение</a><a href="#changelog">Изменения</a><a href="#safety">Безопасность</a><a href="#faq">Вопросы</a>
+      </div>
+      <div class="f-col">
+        <h4>Ссылки</h4>
+        <a href="https://github.com/cactusmclauncher/cactus-launcher-2" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://t.me/virrek_cactus" target="_blank" rel="noopener noreferrer">Телеграм-канал</a>
+        <a href="https://t.me/CactunusTech" target="_blank" rel="noopener noreferrer">Поддержка @CactunusTech</a>
+        <a href="https://www.youtube.com/@CactunusTech" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span class="t-caption">Не связано с Mojang Studios и Microsoft. Minecraft — торговая марка Mojang Studios. KLauncher, SK Launcher, TLauncher, Legacy Launcher, Prism и Millida — товарные знаки их владельцев.</span>
+      <span class="t-caption">Сделано с 🌵 · Cactus UI</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M5.3 8.2l1.9 1.9 3.6-3.8"/></svg>
+  <span id="toastText">Ссылка скопирована</span>
 </div>
-
-<div class="ticker">
-  <div class="track">
-    <span>🛑 Стоп буллингу</span><span>🤝 Дружба</span><span>🧹 Чистота</span><span>📢 Голос учеников</span><span>🎉 Мероприятия</span><span>🍕 Магазин</span><span>🕺 Дискотеки</span><span>🚀 Интернет</span>
-    <span>🛑 Стоп буллингу</span><span>🤝 Дружба</span><span>🧹 Чистота</span><span>📢 Голос учеников</span><span>🎉 Мероприятия</span><span>🍕 Магазин</span><span>🕺 Дискотеки</span><span>🚀 Интернет</span>
-  </div>
-</div>
-
-<section>
-  <div class="stats">
-    <div class="stat"><b data-to="15">0</b><span>целей</span></div>
-    <div class="stat"><b data-to="2">0</b><span>нед. до уборки</span></div>
-    <div class="stat"><b data-to="100" data-suf="%">0</b><span>за вас</span></div>
-  </div>
-</section>
-
-<section id="goals">
-  <h2 class="title">Наши цели 🎯</h2>
-  <p class="sub">Нажми на цель, чтобы узнать больше</p>
-  <div class="goals">
-    <details class="goal"><summary><div class="em">🛑</div><div class="gt"><b>Стоп буллингу</b><small>Безопасно каждому</small></div><span class="chev">⌄</span></summary><p>Каждый должен чувствовать себя в безопасности и не бояться быть собой. Никаких оскорблений и травли.</p></details>
-    
-    <details class="goal"><summary><div class="em">🤝</div><div class="gt"><b>Дружба и единство</b><small>Найди своих</small></div><span class="chev">⌄</span></summary><p>Атмосфера, где каждый найдёт друзей и станет частью коллектива. Больше совместных активностей.</p></details>
-    
-    <details class="goal"><summary><div class="em">🫶</div><div class="gt"><b>Взаимопомощь</b><small>Решаем вместе</small></div><span class="chev">⌄</span></summary><p>Поддерживаем друг друга в учёбе и жизни. Вместе решаем проблемы — так проще и быстрее.</p></details>
-    
-    <details class="goal"><summary><div class="em">🧹</div><div class="gt"><b>Чистая школа</b><small>Уборка раз в 2 недели</small></div><span class="chev">⌄</span></summary><p>Организуем генеральную уборку каждые две недели. Чисто не там, где убирают, а там, где не мусорят — но помочь школе тоже важно.</p></details>
-    
-    <details class="goal"><summary><div class="em">🕺</div><div class="gt"><b>Дискотеки каждую четверть<span class="badge">НОВОЕ</span></b><small>С вкусняшками и музыкой</small></div><span class="chev">⌄</span></summary><p>В конце каждой четверти устраиваем дискотеку с нормальной музыкой, напитками и снеками. Отмечаем конец четверти как надо! 🎧🍕</p></details>
-    
-    <details class="goal"><summary><div class="em">🍕</div><div class="gt"><b>Магазин по понедельникам<span class="badge">НОВОЕ</span></b><small>Вкусняшки за школьную валюту</small></div><span class="chev">⌄</span></summary><p>Каждый понедельник на каждой перемене будет работать магазин. Покупайте снеки, напитки и сладости за школьную валюту, которую можно заработать за активность, помощь и участие в жизни школы. 💰</p></details>
-    
-    <details class="goal"><summary><div class="em">🚀</div><div class="gt"><b>ШКП Ускоритель — бесплатно<span class="badge">НОВОЕ</span></b><small>Telegram, YouTube без проблем</small></div><span class="chev">⌄</span></summary><p>Все получат бесплатный доступ к ШКП Ускорителю навсегда — работает Telegram, YouTube и другие сервисы без тормозов. Просто подключаешься и всё летает. 📡</p></details>
-    
-    <details class="goal"><summary><div class="em">🕊️</div><div class="gt"><b>Мир и дружба</b><small>Уважение вместо ссор</small></div><span class="chev">⌄</span></summary><p>Никаких ссор и вражды между классами. Больше уважения, понимания и доброты друг к другу.</p></details>
-    
-    <details class="goal"><summary><div class="em">🚀</div><div class="gt"><b>Развитие школы</b><small>Каждый день лучше</small></div><span class="chev">⌄</span></summary><p>Предлагаем новые идеи и вместе делаем школу лучше. Не стоим на месте.</p></details>
-    
-    <details class="goal"><summary><div class="em">📢</div><div class="gt"><b>Голос учеников</b><small>Мы вас слышим</small></div><span class="chev">⌄</span></summary><p>Прислушиваемся к мнению школьников и передаём ваши предложения администрации. Ваше мнение важно.</p></details>
-    
-    <details class="goal"><summary><div class="em">💡</div><div class="gt"><b>Новые идеи</b><small>Предложить может любой</small></div><span class="chev">⌄</span></summary><p>Каждый ученик сможет предложить идею, как сделать школу лучше. Лучшие идеи воплотим в жизнь.</p></details>
-    
-    <details class="goal"><summary><div class="em">🏫</div><div class="gt"><b>Комфорт в школе</b><small>Кабинеты и коридоры</small></div><span class="chev">⌄</span></summary><p>Обращаем внимание на проблемы в кабинетах, туалетах и школьных помещениях. Сообщайте — будем решать.</p></details>
-    
-    <details class="goal"><summary><div class="em">🎉</div><div class="gt"><b>Больше мероприятий</b><small>Конкурсы и тематические дни</small></div><span class="chev">⌄</span></summary><p>Предложим интересные конкурсы, тематические дни и совместные события. Школа — это не только уроки.</p></details>
-    
-    <details class="goal"><summary><div class="em">⚖️</div><div class="gt"><b>Справедливость</b><small>Диалог вместо крика</small></div><span class="chev">⌄</span></summary><p>Выступаем за диалог и справедливое отношение ко всем ученикам. Проблемы решаются разговором, а не наказаниями.</p></details>
-    
-    <details class="goal"><summary><div class="em">✨</div><div class="gt"><b>Чистота — общее дело</b><small>Каждый день</small></div><span class="chev">⌄</span></summary><p>Поддерживаем порядок не только на уборках, но и каждый день. Следим за своими местами — так приятнее всем.</p></details>
-  </div>
-</section>
-
-<section>
-  <a class="tg ripple" href="https://t.me/ShKPSchool11" target="_blank" rel="noopener">
-    <div class="ava"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.3l-4.7-1.5c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg></div>
-    <div class="txt"><b>Telegram-канал ШКП</b><span>t.me/ShKPSchool11</span></div>
-    <span class="go">Открыть</span>
-  </a>
-</section>
-
-<section id="vote">
-  <div class="final">
-    <div class="big">🗳️</div>
-    <h3>Голосуй за ШКП!</h3>
-    <p>Мы не просто обещаем — мы действуем 💪<br>Школа №11 — наша общая школа.</p>
-    <button class="btn ripple" id="voteBtn">✋ Я за ШКП!</button>
-    <button class="btn btn2 ripple" id="shareBtn">📣 Позвать друзей</button>
-  </div>
-</section>
-
-<footer>© ШКП · Школьная коммунистическая партия · Школа №11</footer>
-
-<a class="fab ripple" id="fab" href="https://t.me/ShKPSchool11" target="_blank" rel="noopener">✈️<span class="label">Подписаться</span></a>
-<div class="snack" id="snack"></div>
 
 <script>
-const $=s=>document.querySelector(s);
-const bar=$('#bar'),bg=$('#bg'),fab=$('#fab');
-let lastY=0;
-addEventListener('scroll',()=>{
-  const y=scrollY;
-  bar.classList.toggle('solid',y>innerHeight*.6);
-  if(bg && y<innerHeight) bg.style.transform=`translateY(${y*.35}px)`;
-  fab.classList.toggle('small',y>lastY&&y>200);
-  lastY=y;
-},{passive:true});
+(function(){
+  "use strict";
 
-/* Счётчики */
-const io=new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting)return;
-  const n=e.target.querySelector('[data-to]');
-  if(n){const to=+n.dataset.to,suf=n.dataset.suf||'',t0=performance.now();
-    (function tick(t){const p=Math.min((t-t0)/1200,1);n.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(tick)})(t0);}
-  io.unobserve(e.target);
-}),{threshold:.15});
-document.querySelectorAll('.stat').forEach(el=>io.observe(el));
+  /* ---------- привет из консоли ---------- */
+  try{
+    console.log("%c🌵 Cactus Launcher 2 — Лучше, чем было.","font-size:20px;font-weight:700;color:#7FB347");
+    console.log("%cРаз ты уже здесь — сделай PR на GitHub: https://github.com/cactusmclauncher/cactus-launcher-2","font-size:13px;color:#0071E3");
+  }catch(e){}
 
-/* Одна открытая цель за раз */
-document.querySelectorAll('details.goal').forEach(d=>d.addEventListener('toggle',()=>{
-  if(d.open)document.querySelectorAll('details.goal[open]').forEach(o=>o!==d&&(o.open=false));
-}));
+  /* ---------- toast ---------- */
+  var toast=document.getElementById("toast"),toastText=document.getElementById("toastText"),timer;
+  function showToast(msg){toastText.textContent=msg;toast.classList.add("show");clearTimeout(timer);timer=setTimeout(function(){toast.classList.remove("show")},2600)}
 
-/* Ripple */
-document.addEventListener('pointerdown',e=>{
-  const el=e.target.closest('.ripple');if(!el)return;
-  const r=el.getBoundingClientRect(),s=Math.max(r.width,r.height),sp=document.createElement('span');
-  sp.className='rip';sp.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;
-  el.appendChild(sp);setTimeout(()=>sp.remove(),500);
-});
+  /* ---------- copy link ---------- */
+  var copyBtn=document.getElementById("copyBtn");
+  copyBtn.addEventListener("click",function(){
+    var link=copyBtn.getAttribute("data-link");
+    function fallback(){
+      var ta=document.createElement("textarea");ta.value=link;ta.setAttribute("readonly","");
+      ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
+      try{document.execCommand("copy");showToast("Ссылка скопирована")}catch(e){showToast("Не удалось скопировать")}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(link).then(function(){showToast("Ссылка скопирована")},fallback)}else{fallback()}
+  });
 
-/* Snackbar */
-const snack=$('#snack');
-function toast(t){snack.textContent=t;snack.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>snack.classList.remove('show'),2600)}
+  /* ---------- reveal on scroll ---------- */
+  var items=document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}});
+    },{rootMargin:"0px 0px -8% 0px",threshold:.06});
+    items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i%3,2)*60)+"ms";io.observe(el)});
+  }else{items.forEach(function(el){el.classList.add("in")})}
 
-/* Конфетти */
-function confetti(){
-  const em=['💙','🗳️','🎉','✨','💪','⭐'];
-  for(let i=0;i<40;i++){
-    const c=document.createElement('span');c.className='conf';
-    c.textContent=em[i%em.length];
-    c.style.left=Math.random()*100+'vw';
-    c.style.animationDuration=(2+Math.random()*2)+'s';
-    c.style.animationDelay=Math.random()*.4+'s';
-    document.body.appendChild(c);setTimeout(()=>c.remove(),4500);
+  /* ---------- active nav link ---------- */
+  var links=Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute("href"))});
+  function syncNav(){
+    var y=window.scrollY+120,best=0;
+    sections.forEach(function(sec,i){if(sec&&sec.offsetTop<=y)best=i});
+    links.forEach(function(a,i){a.classList.toggle("is-active",i===best)});
   }
-  navigator.vibrate&&navigator.vibrate([30,40,30]);
-}
-
-/* Поделиться */
-async function share(){
-  const d={title:'ШКП — Школа №11',text:'Меньше слов — больше дела! Голосуй за ШКП 🗳️💙',url:location.href};
-  try{ if(navigator.share) await navigator.share(d);
-       else{await navigator.clipboard.writeText(d.text+' '+d.url);toast('Ссылка скопирована — отправь друзьям 💙')} }catch(e){}
-}
-
-/* Кнопка «Я за ШКП» */
-const vb=$('#voteBtn');
-function setDone(){vb.classList.add('done');vb.textContent='💙 Ты с нами!'}
-if(localStorage.getItem('shkp-vote'))setDone();
-vb.onclick=()=>{confetti();localStorage.setItem('shkp-vote','1');setDone();toast('Спасибо! Теперь позови друзей 👇')};
-$('#shareBtn').onclick=share;
-$('#shareTop').onclick=share;
+  var raf=null;
+  window.addEventListener("scroll",function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;syncNav()})},{passive:true});
+  syncNav();
+})();
 </script>
 </body>
 </html>
